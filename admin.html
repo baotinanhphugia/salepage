@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Admin - Phú Gia Diamond</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:#0b0b0d;color:#fff}
+.wrap{max-width:1180px;margin:auto;padding:20px}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.brand{display:flex;align-items:center;gap:12px}
+.brandLogo{width:48px;height:48px;border-radius:10px;object-fit:cover}
+.logo{font-size:24px;font-weight:900;color:#d6ad45}
+.card{background:#151518;border:1px solid rgba(214,173,69,.25);border-radius:18px;padding:18px;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+label{font-size:13px;color:#d6ad45;font-weight:700;margin-bottom:6px;display:block}
+input,textarea,select{width:100%;padding:12px;border-radius:10px;border:1px solid #333;background:#0d0d10;color:#fff;font-size:15px}
+textarea{min-height:88px}
+.price-json{min-height:320px;font-family:Menlo,Consolas,monospace;font-size:13px;line-height:1.45}
+button{border:0;border-radius:999px;padding:13px 20px;background:linear-gradient(90deg,#b8860b,#ffd36a,#b8860b);color:#111;font-weight:900;cursor:pointer}
+.btn2{background:#222;color:#fff;border:1px solid #555}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tab{padding:10px 14px;border-radius:999px;background:#222;cursor:pointer}
+.tab.active{background:#d6ad45;color:#111;font-weight:900}
+.panel{display:none}
+.panel.active{display:block}
+.status{padding:10px;border-radius:10px;margin:12px 0;display:none}
+.ok{background:#064e3b}
+.err{background:#7f1d1d}
+table{width:100%;border-collapse:collapse;background:#111;border-radius:12px;overflow:hidden}
+th,td{padding:10px;border-bottom:1px solid #333;text-align:left;font-size:13px}
+th{background:#222;color:#d6ad45}
+.small{font-size:13px;color:#aaa}
+@media(max-width:800px){.grid,.grid3{grid-template-columns:1fr}.header{display:block}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <div>
+      <div class="brand">
+        <img class="brandLogo" src="images/logo-phu-gia.jpeg" alt="Phú Gia Diamond">
+        <div class="logo">PHÚ GIA DIAMOND ADMIN</div>
+      </div>
+      <div class="small">Chỉnh giá, sản phẩm, chuyển khoản, map, form đặt hàng và xem đơn.</div>
+    </div>
+    <button class="btn2" onclick="loadOrders()">Tải đơn hàng</button>
+  </div>
+
+  <div class="card">
+    <div class="grid">
+      <div>
+        <label>Apps Script Web App URL</label>
+        <input id="apiUrl" placeholder="Dán link Web App Apps Script">
+      </div>
+      <div>
+        <label>Mật khẩu Admin</label>
+        <input id="adminKey" type="password" placeholder="Ví dụ: 123456">
+      </div>
+    </div>
+    <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+      <button onclick="saveLocal()">Lưu kết nối</button>
+      <button class="btn2" onclick="loadConfig()">Tải cấu hình</button>
+      <button class="btn2" onclick="openLanding()">Mở Landing Page</button>
+    </div>
+    <div id="status" class="status"></div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('product')">Sản phẩm & Giá</div>
+    <div class="tab" onclick="showTab('bank')">Chuyển khoản</div>
+    <div class="tab" onclick="showTab('map')">Map & Shop</div>
+    <div class="tab" onclick="showTab('form')">Form đặt hàng</div>
+    <div class="tab" onclick="showTab('notify')">Telegram & Gmail</div>
+    <div class="tab" onclick="showTab('orders')">Đơn hàng</div>
+  </div>
+
+  <form id="configForm">
+    <section id="product" class="panel active card">
+      <h2>Sản phẩm & Giá</h2><br>
+      <div class="grid">
+        <div><label>Tên sản phẩm</label><input name="productName" value="Bông nụ bạc S925 kim cương Moissanite cao cấp full kiểm định GRA"></div>
+        <div><label>Tên shop</label><input name="shopName" value="Phú Gia Diamond"></div>
+        <div><label>Giá bán mặc định</label><input name="salePrice" value="459999"></div>
+        <div><label>Giá gốc mặc định</label><input name="oldPrice" value="647895"></div>
+        <div><label>Text giảm giá</label><input name="discountText" value="Flash Sale"></div>
+        <div><label>Flash sale phút</label><input name="flashMinutes" value="14"></div>
+        <div><label>Đã bán</label><input name="soldCount" value="1238"></div>
+        <div><label>Còn hàng</label><input name="stockLeft" value="17"></div>
+      </div>
+      <br>
+      <label>Mô tả ngắn</label>
+      <textarea name="shortDescription">Bạc thật S925, Moissanite sáng đẹp, full kiểm định GRA, tặng hộp cao cấp.</textarea>
+      <br><br>
+      <label>Bảng giá theo size (JSON)</label>
+      <textarea name="priceTable" class="price-json">[
+  {"type":"1 Chiếc","size":"4mm","code":"MS04","stock":"106","oldPrice":"295000","salePrice":"229999"},
+  {"type":"1 Chiếc","size":"4.5mm","code":"MS04.5","stock":"2","oldPrice":"315000","salePrice":"249000"},
+  {"type":"1 Chiếc","size":"5mm","code":"MS05","stock":"105","oldPrice":"332000","salePrice":"259000"},
+  {"type":"1 Chiếc","size":"6mm","code":"MS06","stock":"50","oldPrice":"444000","salePrice":"305999"},
+  {"type":"1 Chiếc","size":"6.8mm","code":"MS06.8","stock":"31","oldPrice":"556000","salePrice":""},
+  {"type":"1 Chiếc","size":"7.5mm","code":"MS07.5","stock":"41","oldPrice":"700000","salePrice":"409999"},
+  {"type":"1 Đôi","size":"4mm","code":"MS04*2","stock":"56","oldPrice":"600303","salePrice":"399999"},
+  {"type":"1 Đôi","size":"4.5mm","code":"MS04.5*2","stock":"3","oldPrice":"616216","salePrice":"439999"},
+  {"type":"1 Đôi","size":"5mm","code":"MS05*2","stock":"46","oldPrice":"647895","salePrice":"459999"},
+  {"type":"1 Đôi","size":"6mm","code":"MS06*2","stock":"25","oldPrice":"804872","salePrice":"549999"},
+  {"type":"1 Đôi","size":"6.8mm","code":"MS06.8*2","stock":"6","oldPrice":"953721","salePrice":"659999"},
+  {"type":"1 Đôi","size":"7.5mm","code":"MS07.5*2","stock":"111","oldPrice":"1204000","salePrice":"759999"}
+]</textarea>
+    </section>
+
+    <section id="bank" class="panel card">
+      <h2>Thông tin chuyển khoản</h2><br>
+      <div class="grid">
+        <div><label>Ngân hàng</label><input name="bankName" placeholder="VD: MB Bank"></div>
+        <div><label>Số tài khoản</label><input name="bankAccount" placeholder="VD: 0398138678"></div>
+        <div><label>Chủ tài khoản</label><input name="bankOwner" placeholder="VD: ANH PHU GIA DIAMOND"></div>
+        <div><label>Nội dung chuyển khoản</label><input name="bankContent" value="PGD + Số điện thoại"></div>
+      </div>
+      <br>
+      <label>Thông tin chuyển khoản hiển thị</label>
+      <textarea name="bankInfo">Chuyển khoản theo nội dung: PGD + Số điện thoại. Shop sẽ xác nhận sau khi nhận thông tin.</textarea>
+    </section>
+
+    <section id="map" class="panel card">
+      <h2>Map & Thông tin shop</h2><br>
+      <div class="grid">
+        <div><label>Địa chỉ shop</label><input name="shopAddress" placeholder="Trương Xá, Nghĩa Dân, Hưng Yên"></div>
+        <div><label>Hotline</label><input name="hotline" placeholder="0398138678"></div>
+        <div><label>Zalo</label><input name="zalo" placeholder="0398138678"></div>
+        <div><label>Google Maps link shop</label><input name="shopMap" placeholder="https://maps.google.com/..."></div>
+      </div>
+    </section>
+
+    <section id="form" class="panel card">
+      <h2>Thông tin form đặt hàng</h2><br>
+      <div class="grid">
+        <div><label>Size hiển thị</label><input name="sizes" value="4mm,4.5mm,5mm,6mm,6.8mm,7.5mm"></div>
+        <div><label>Số lượng</label><input name="quantities" value="1 đôi,2 đôi,3 đôi"></div>
+      </div>
+      <br>
+      <label>Combo / Ưu đãi</label>
+      <textarea name="combos">Mua 1 đôi: giá theo size + Freeship
+Mua 1 chiếc: giá theo size</textarea>
+      <br>
+      <label>Chính sách bán hàng</label>
+      <textarea name="policies">Được kiểm tra hàng trước khi thanh toán
+Cam kết bạc thật S925
+Bảo hành đánh bóng, làm sáng sản phẩm
+Hỗ trợ tư vấn chọn size phù hợp</textarea>
+    </section>
+
+    <section id="notify" class="panel card">
+      <h2>Telegram & Gmail</h2><br>
+      <p class="small">Phần này lưu vào Properties của Apps Script. Không hiển thị cho khách.</p><br>
+      <div class="grid">
+        <div><label>Telegram Bot Token</label><input name="telegramBotToken" placeholder="Dán bot token"></div>
+        <div><label>Telegram Chat ID</label><input name="telegramChatId" placeholder="Dán chat id"></div>
+        <div><label>Email nhận đơn</label><input name="adminEmail" placeholder="email@gmail.com"></div>
+        <div><label>Admin Password mới</label><input name="newAdminKey" placeholder="Để trống nếu không đổi"></div>
+      </div>
+    </section>
+
+    <div class="card">
+      <button type="submit">LƯU TOÀN BỘ CẤU HÌNH</button>
+    </div>
+  </form>
+
+  <section id="orders" class="panel card">
+    <h2>Đơn hàng mới</h2><br>
+    <div style="overflow:auto">
+      <table id="ordersTable">
+        <thead><tr><th>Thời gian</th><th>Mã đơn</th><th>Khách</th><th>SĐT</th><th>Địa chỉ</th><th>Phân loại</th><th>Size</th><th>SL</th><th>Trạng thái</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const DEFAULT_API_URL = "https://script.google.com/macros/s/AKfycbzYviOl-jFNZAOvYRchK99iTH6amjrPiyESWhz59Jwty8xgRsKaZCNpnSdgv-o_GXUK/exec";
+
+function showStatus(text, ok=true){
+  const box = $("#status");
+  box.style.display = "block";
+  box.className = "status " + (ok ? "ok" : "err");
+  box.innerText = text;
+}
+
+function saveLocal(){
+  localStorage.setItem("PGD_API_URL", $("#apiUrl").value.trim());
+  localStorage.setItem("PGD_ADMIN_KEY", $("#adminKey").value.trim());
+  showStatus("Đã lưu kết nối trên trình duyệt.");
+}
+
+function loadLocal(){
+  $("#apiUrl").value = localStorage.getItem("PGD_API_URL") || DEFAULT_API_URL;
+  $("#adminKey").value = localStorage.getItem("PGD_ADMIN_KEY") || "";
+}
+
+function api(){
+  const url = $("#apiUrl").value.trim();
+  if(!url) throw new Error("Chưa nhập Apps Script Web App URL");
+  return url;
+}
+
+function key(){
+  const k = $("#adminKey").value.trim();
+  if(!k) throw new Error("Chưa nhập mật khẩu admin");
+  return k;
+}
+
+function showTab(id){
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  event.target.classList.add("active");
+  document.getElementById(id).classList.add("active");
+}
+
+function formToObject(){
+  const data = Object.fromEntries(new FormData($("#configForm")).entries());
+  return data;
+}
+
+function validatePriceTable(){
+  const el = document.querySelector('[name="priceTable"]');
+  if(!el || !el.value.trim()) return;
+  const parsed = JSON.parse(el.value);
+  if(!Array.isArray(parsed)) throw new Error("Bảng giá phải là JSON array");
+  parsed.forEach((item, index)=>{
+    if(!item.type || !item.size || !item.oldPrice){
+      throw new Error("Bảng giá dòng " + (index + 1) + " thiếu type, size hoặc oldPrice");
+    }
+    if(item.stock !== undefined && item.stock !== "" && !Number.isFinite(Number(String(item.stock).replace(/\D/g, "")))){
+      throw new Error("Bảng giá dòng " + (index + 1) + " có kho không hợp lệ");
+    }
+  });
+}
+
+function fillForm(config){
+  Object.entries(config || {}).forEach(([k,v])=>{
+    const el = document.querySelector(`[name="${k}"]`);
+    if(el) el.value = v;
+  });
+}
+
+async function loadConfig(){
+  try{
+    saveLocal();
+    const res = await fetch(api() + "?action=adminConfig&key=" + encodeURIComponent(key()));
+    const data = await res.json();
+    if(!data.ok) throw new Error(data.error || "Không tải được cấu hình");
+    fillForm(data.config);
+    showStatus("Đã tải cấu hình.");
+  }catch(e){
+    showStatus(e.message, false);
+  }
+}
+
+$("#configForm").addEventListener("submit", async e=>{
+  e.preventDefault();
+  try{
+    saveLocal();
+    validatePriceTable();
+    const payload = {
+      action: "saveConfig",
+      key: key(),
+      config: formToObject()
+    };
+    const res = await fetch(api(), {
+      method: "POST",
+      mode: "cors",
+      headers: {"Content-Type":"text/plain;charset=utf-8"},
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    if(!data.ok) throw new Error(data.error || "Lưu thất bại");
+    showStatus("Đã lưu cấu hình thành công.");
+  }catch(err){
+    showStatus(err.message, false);
+  }
+});
+
+async function loadOrders(){
+  try{
+    saveLocal();
+    const res = await fetch(api() + "?action=orders&key=" + encodeURIComponent(key()));
+    const data = await res.json();
+    if(!data.ok) throw new Error(data.error || "Không tải được đơn");
+    const tbody = $("#ordersTable tbody");
+    tbody.innerHTML = "";
+    (data.orders || []).forEach(o=>{
+      const tr = document.createElement("tr");
+      tr.innerHTML = `<td>${o.createdAt||""}</td><td>${o.orderId||""}</td><td>${o.name||""}</td><td>${o.phone||""}</td><td>${o.address||""}</td><td>${o.variant||""}</td><td>${o.size||""}</td><td>${o.quantity||""}</td><td>${o.status||""}</td>`;
+      tbody.appendChild(tr);
+    });
+    showTabFromCode("orders");
+    showStatus("Đã tải đơn hàng.");
+  }catch(e){
+    showStatus(e.message, false);
+  }
+}
+
+function showTabFromCode(id){
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  document.querySelectorAll(".tab")[5].classList.add("active");
+  document.getElementById(id).classList.add("active");
+}
+
+function openLanding(){
+  window.open("index.html", "_blank");
+}
+
+loadLocal();
+</script>
+</body>
+</html>
