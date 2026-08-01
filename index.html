@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Phú Gia Diamond - Bông tai Moissanite</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:#f3f4f6;color:#111;max-width:480px;margin:auto}
+img{width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.top{position:sticky;top:0;z-index:50;height:46px;background:#ffffffee;display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-bottom:1px solid #eee}
+.circle{width:32px;height:32px;border-radius:50%;background:#777;color:white;display:flex;align-items:center;justify-content:center;font-weight:bold}
+.hero{background:#fff}
+.banner{background:linear-gradient(90deg,#ff3b5f,#2dd4bf,#ffd447);display:flex;color:#fff;font-weight:900}
+.banner div{flex:1;padding:10px;text-align:center}
+.flash{background:#ffd447;color:#111}
+.priceBox{background:#fff;padding:14px 16px}
+.price{font-size:32px;color:#e60033;font-weight:900}
+.old{text-decoration:line-through;color:#999;margin-left:8px}
+.sale{background:#e60033;color:#fff;border-radius:6px;padding:7px 12px;margin-left:8px;font-weight:bold}
+.title{font-size:22px;font-weight:900;line-height:1.35;margin-top:8px}
+.meta{display:flex;gap:10px;align-items:center;margin-top:12px;font-size:15px}
+.star{color:#f6a800;font-size:22px}
+.row{background:#fff;margin-top:8px;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee}
+.tag{background:#fff1e6;color:#9a4b1f;font-weight:bold}
+.protect{background:#eef0f4;display:grid;grid-template-columns:repeat(3,1fr);gap:4px;font-size:13px}
+.protect span{padding:11px 6px;text-align:center}
+.sec{background:#fff;margin-top:8px;padding:16px}
+.sec h2{font-size:22px;margin-bottom:12px}
+.policy{border-radius:16px;overflow:hidden;margin:14px 0;background:#062b79;color:#fff}
+.policy h3{background:#1724ff;font-size:26px;text-align:center;padding:14px}
+.policy p{padding:9px 18px;font-size:17px}
+.deal{border-radius:16px;overflow:hidden;margin:14px 0;background:#fff200}
+.deal h3{background:red;color:#fff;font-size:28px;text-align:center;padding:14px}
+.deal p{font-size:22px;font-weight:900;padding:10px 18px;color:#f00}
+.shop{display:flex;gap:12px;align-items:center}
+.logo{width:72px;height:72px;border-radius:50%;background:#050505;overflow:hidden;flex:0 0 72px}
+.logo img{width:100%;height:100%;object-fit:cover}
+.shopStats{display:grid;grid-template-columns:repeat(4,1fr);text-align:center;margin-top:14px;color:#777}
+.shopStats b{display:block;color:#111;font-size:18px}
+.review{border-top:1px solid #ddd;padding:16px 0}
+.reviewHead{display:flex;gap:10px;align-items:center}
+.avatar{width:44px;height:44px;border-radius:50%;background:#ddd}
+.ok{color:#16a34a;font-size:14px}
+.reviewImgs{display:flex;gap:8px;margin-top:10px}
+.reviewImgs img{width:74px;height:74px;object-fit:cover;border-radius:6px}
+.orderBlock{background:linear-gradient(#b8f1f2,#354444);padding:0 14px 24px}
+.count{background:#062b79;color:#fff;padding:15px;display:flex;align-items:center;justify-content:space-between}
+.count b{font-size:23px}
+.count span{background:#fff;color:red;padding:8px 10px;font-weight:900;margin-left:4px}
+.orderTitle{background:#008b00;color:#fff;text-align:center;font-size:23px;font-weight:900;padding:14px;margin:0 55px 14px}
+form{display:grid;gap:10px}
+input,select,textarea{width:100%;padding:15px;border:1px solid #bbb;border-radius:10px;font-size:16px;background:#fff}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.options{background:#fff;border-radius:10px;padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:15px}
+.radioBox{background:#fff;border-radius:10px;padding:12px;display:grid;gap:10px}
+button{border:0;background:#e60000;color:#fff;border-radius:999px;padding:17px;font-size:22px;font-weight:900;margin:8px 45px 0}
+.bottom{position:sticky;bottom:0;background:#fff;display:grid;grid-template-columns:1fr 1fr 1.2fr 1.2fr;gap:6px;padding:8px;border-top:1px solid #ddd;z-index:99}
+.bottom a,.bottom button{margin:0;border-radius:6px;font-size:15px;padding:0 8px;text-align:center;min-height:54px;display:flex;align-items:center;justify-content:center;line-height:1.2}
+.bottom .cart,.bottom .buy{font-size:16px}
+.bottom .buy{background:#e60033;color:#fff;font-weight:900}
+.bottom .cart{border:2px solid #e60033;color:#e60033;background:#fff;font-weight:900}
+.note{font-size:13px;color:#fff;text-align:center;margin-top:8px}
+
+/* Popup seeding giống TikTok Shop */
+.live-toast{
+  position:fixed;
+  top:58px;
+  left:12px;
+  z-index:120;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:310px;
+  max-width:calc(100vw - 24px);
+  background:#ffffff;
+  border:1px solid #ddd;
+  border-radius:999px;
+  padding:7px 12px 7px 7px;
+  box-shadow:0 6px 18px rgba(0,0,0,.12);
+  transform:translateX(-120%);
+  opacity:0;
+  transition:.45s ease;
+}
+.live-toast.show{transform:translateX(0);opacity:1}
+.live-toast img{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  object-fit:cover;
+}
+.live-toast b{display:block;font-size:14px}
+.live-toast span{display:block;font-size:12px;color:#333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:230px}
+.live-toast small{display:block;font-size:11px;color:#666}
+
+
+/* ===== TikTok Shop COD Pro Upgrade ===== */
+.live-bar{
+  background:#fff;
+  margin-top:8px;
+  padding:10px 16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  font-size:14px;
+  border-bottom:1px solid #eee;
+}
+.live-pill{
+  background:#fff4f6;
+  color:#e60033;
+  border:1px solid #ffd0d9;
+  border-radius:999px;
+  padding:6px 10px;
+  font-weight:800;
+}
+.stock-box{
+  background:#fff;
+  margin-top:8px;
+  padding:15px 16px;
+}
+.stock-title{
+  display:flex;
+  justify-content:space-between;
+  font-weight:800;
+  margin-bottom:8px;
+}
+.stock-track{
+  height:12px;
+  background:#ffe1e8;
+  border-radius:999px;
+  overflow:hidden;
+}
+.stock-fill{
+  height:100%;
+  width:71%;
+  background:linear-gradient(90deg,#ff003c,#ff7a00);
+  border-radius:999px;
+  animation:stockPulse 1.2s infinite;
+}
+@keyframes stockPulse{
+  0%,100%{filter:brightness(1)}
+  50%{filter:brightness(1.25)}
+}
+.urgent-note{
+  color:#e60033;
+  font-size:13px;
+  margin-top:8px;
+  font-weight:700;
+}
+.floating-viewers{
+  position:fixed;
+  right:10px;
+  top:110px;
+  z-index:110;
+  background:#111;
+  color:#fff;
+  padding:8px 10px;
+  border-radius:999px;
+  font-size:12px;
+  box-shadow:0 6px 18px rgba(0,0,0,.25);
+  opacity:.92;
+}
+.shake-buy{
+  animation:buyShake 1.4s infinite;
+}
+@keyframes buyShake{
+  0%,100%{transform:translateX(0) scale(1)}
+  10%{transform:translateX(-2px) scale(1.02)}
+  20%{transform:translateX(2px) scale(1.02)}
+  30%{transform:translateX(-2px) scale(1.02)}
+  40%{transform:translateX(2px) scale(1.02)}
+  50%{transform:translateX(0) scale(1)}
+}
+.map-link{
+  color:#fff;
+  background:#0f766e;
+  border-radius:8px;
+  padding:8px 10px;
+  display:none;
+  text-align:center;
+  font-size:13px;
+}
+.select-loading{
+  opacity:.7;
+}
+.price-table-wrap{
+  overflow:auto;
+  border:1px solid #eee;
+  border-radius:10px;
+}
+.price-table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:430px;
+  font-size:14px;
+}
+.price-table th,.price-table td{
+  padding:10px 8px;
+  border-bottom:1px solid #eee;
+  text-align:left;
+}
+.price-table th{
+  background:#fff1e6;
+  color:#9a4b1f;
+}
+.price-table tr:last-child td{
+  border-bottom:0;
+}
+.price-table .sale-price{
+  color:#e60033;
+  font-weight:900;
+}
+.price-table .old-price{
+  color:#888;
+  text-decoration:line-through;
+  font-size:13px;
+}
+.price-hint{
+  color:#e60033;
+  font-weight:800;
+  text-align:center;
+  margin-top:6px;
+}
+</style>
+</head>
+<body>
+
+
+<div class="floating-viewers">👀 <b id="viewerCount">38</b> người đang xem</div>
+
+<div class="live-toast" id="liveToast">
+  <img id="toastAvatar" src="images/avatar1.png" alt="">
+  <div>
+    <b id="toastName">Nguyễn Hồng Anh</b>
+    <span id="toastText">Đã mua 1 đôi 5mm + Freeship</span>
+    <small id="toastTime">5 phút trước</small>
+  </div>
+</div>
+
+
+<div class="top">
+  <div class="circle">‹</div>
+  <div></div>
+  <div style="display:flex;gap:8px"><div class="circle">↗</div><div class="circle">🛒</div><div class="circle">…</div></div>
+</div>
+
+<section class="hero">
+  <img src="images/anh-mau.png" alt="Bông tai Moissanite">
+  <div class="banner">
+    <div>EXTRA<br>Voucher 20%</div>
+    <div>XTRA<br>Freeship*</div>
+    <div class="flash">⚡ Flash Sale<br><b id="miniTimer">00:14:59</b></div>
+  </div>
+</section>
+
+<section class="priceBox">
+  <div><span class="price">459.999đ</span><span class="old">647.895đ</span><span class="sale">Flash Sale</span></div>
+  <div class="title">Bông nụ bạc S925 kim cương Moissanite cao cấp full kiểm định GRA</div>
+  <div class="meta"><span class="star">★</span><b>4.9/5</b><span>(mẫu hiển thị)</span><span>|</span><span>Đã bán 1.2K+</span></div>
+</section>
+
+<div class="row tag">🏆 Sản phẩm nổi bật • Bông tai Moissanite bán chạy</div>
+<div class="protect"><span>💳 Thanh toán bảo mật</span><span>🔁 Đổi trả dễ dàng</span><span>🛡 Hỗ trợ nhanh</span></div>
+<div class="live-bar">
+  <span class="live-pill">🔥 Đã bán <b id="soldCount">1.238</b> đơn</span>
+  <span class="live-pill">⚡ <b id="leadCount">27</b> khách vừa để lại SĐT</span>
+</div>
+<div class="stock-box">
+  <div class="stock-title"><span>Ưu đãi hôm nay</span><span style="color:#e60033">Còn <b id="stockLeft">17</b> sản phẩm</span></div>
+  <div class="stock-track"><div class="stock-fill" id="stockFill"></div></div>
+  <div class="urgent-note">Nhanh tay đặt hàng để giữ giá Flash Sale + Freeship</div>
+</div>
+
+<div class="row"><b>Chọn các tuỳ chọn</b><span style="color:red">Kích cỡ đá &gt;</span></div>
+<div class="row"><b>Hình thức thanh toán</b><span><b style="background:#4b7d35;color:white;padding:4px 10px">COD</b> Thanh toán khi nhận hàng</span></div>
+<div class="row"><b>Vận chuyển</b><span><del style="color:#aaa">40.000đ</del> <b>Miễn phí</b></span></div>
+<div class="row"><b>Chính sách đổi trả</b><span>Kiểm tra hàng trước khi thanh toán</span></div>
+
+<section class="sec">
+  <h2>Bảng giá theo size</h2>
+  <div class="price-table-wrap">
+    <table class="price-table">
+      <thead><tr><th>Phân loại</th><th>Size</th><th>Mã</th><th>Giá KM</th><th>Giá gốc</th></tr></thead>
+      <tbody id="priceTableBody"></tbody>
+    </table>
+  </div>
+  <div class="price-hint">Chọn phân loại và size ở form đặt hàng để hệ thống tự tính giá.</div>
+</section>
+
+<section class="sec">
+  <div class="deal">
+    <h3>✨ ƯU ĐÃI ĐẶC BIỆT ✨</h3>
+    <p>🎁 Mua 1 đôi tặng hộp cao cấp</p>
+    <p>🎁 Miễn phí ship hôm nay</p>
+    <p>🎁 Full giấy kiểm định GRA</p>
+  </div>
+
+  <div class="policy">
+    <h3>CHÍNH SÁCH BÁN HÀNG</h3>
+    <p>✅ Được kiểm tra hàng trước khi thanh toán</p>
+    <p>✅ Cam kết bạc thật S925</p>
+    <p>✅ Bảo hành đánh bóng, làm sáng sản phẩm</p>
+    <p>✅ Hỗ trợ tư vấn chọn size phù hợp</p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="shop">
+    <div class="logo"><img src="images/logo-phu-gia.jpeg" alt="Phú Gia Diamond"></div>
+    <div>
+      <h2 style="margin:0">Phú Gia Diamond</h2>
+      <span style="background:#b7f7c1;padding:4px 8px;border-radius:4px">★ 4.9</span>
+    </div>
+  </div>
+  <div class="shopStats">
+    <div><b>50+</b>Mặt hàng</div>
+    <div><b>1.2K+</b>Đã bán</div>
+    <div><b>99%</b>Phản hồi</div>
+    <div><b>24h</b>Xử lý</div>
+  </div>
+</section>
+
+<section class="sec">
+  <h2>Giới thiệu sản phẩm này</h2>
+  <img src="images/57-giac-cat.jpg" alt="">
+  <img src="images/anh-chinh.jpg" alt="">
+  <img src="images/anh-chup.png" alt="">
+  <img src="images/kich-thuoc.png" alt="">
+  <img src="images/thong-so.png" alt="">
+</section>
+
+<section class="sec">
+  <h2>Đánh giá của khách hàng</h2>
+  <p><b>4.9/5</b> <span class="star">★★★★★</span> <span style="color:#666">(khách gửi ảnh thực tế)</span></p>
+
+  <div class="review">
+    <div class="reviewHead"><div class="avatar"></div><div><b>N**n H**g</b><br><span class="ok">✅ Đã nhận hàng</span></div></div>
+    <div class="star">★★★★★</div>
+    <p>Sản phẩm sáng đẹp, đeo lên tai rất sang, shop đóng gói kỹ.</p>
+    <div class="reviewImgs"><img src="images/review1.jpg"><img src="images/review2.jpg"></div>
+  </div>
+
+  <div class="review">
+    <div class="reviewHead"><div class="avatar"></div><div><b>T**i A**h</b><br><span class="ok">✅ Đã nhận hàng</span></div></div>
+    <div class="star">★★★★★</div>
+    <p>Đá bắt sáng tốt, có hộp và giấy kiểm định như mô tả.</p>
+    <div class="reviewImgs"><img src="images/review3.jpg"><img src="images/review4.jpg"></div>
+  </div>
+
+  <div class="review">
+    <div class="reviewHead"><div class="avatar"></div><div><b>H**n M**i</b><br><span class="ok">✅ Đã nhận hàng</span></div></div>
+    <div class="star">★★★★★</div>
+    <p>Mình chọn size 5mm, nhỏ xinh, đi làm hằng ngày rất hợp.</p>
+    <div class="reviewImgs"><img src="images/review5.jpg"><img src="images/review6.jpg"></div>
+  </div>
+</section>
+
+<section class="orderBlock" id="order">
+  <div class="count"><b>⚡ Flash Sale</b><div><span id="d">00</span><span id="h">00</span><span id="m">14</span><span id="s">59</span></div></div>
+  <div style="background:white;padding:14px 16px"><span class="old">647.895đ</span> <span class="sale">Flash Sale</span> <span class="price">459.999đ</span></div>
+  <div style="background:#fff200;text-align:center;font-size:20px;font-weight:900;padding:12px">MUA HÀNG NGAY HÔM NAY ĐỂ NHẬN ƯU ĐÃI</div>
+  <div class="orderTitle">THÔNG TIN ĐẶT HÀNG</div>
+
+  <form id="orderForm">
+    <input type="hidden" name="price" value="459999">
+    <div class="grid2">
+      <input name="name" placeholder="Họ và tên" required>
+      <input name="phone" placeholder="Số điện thoại" required>
+    </div>
+    <textarea name="address" placeholder="Địa chỉ nhận hàng" rows="2" required></textarea>
+    <div class="grid2">
+      <input name="province" id="province" list="provinceOptions" placeholder="Tỉnh/Thành phố" autocomplete="off" required>
+      <datalist id="provinceOptions"></datalist>
+      <input name="ward" id="ward" list="wardOptions" placeholder="Phường/Xã" autocomplete="off" required>
+      <datalist id="wardOptions"></datalist>
+      <input type="hidden" name="district" id="district" value="">
+    </div>
+    <div class="grid2">
+      <select name="variant" id="variantSelect" required>
+        <option value="1 Đôi">1 Đôi</option>
+        <option value="1 Chiếc">1 Chiếc</option>
+      </select>
+      <select name="size" id="sizeSelect" required>
+        <option value="">Chọn size đá</option>
+        <option>4mm</option><option>4.5mm</option><option>5mm</option>
+        <option>6mm</option><option>6.8mm</option><option>7.5mm</option>
+      </select>
+    </div>
+    <input id="selectedPriceText" value="Giá: 459.999đ" readonly>
+    <input type="hidden" name="giftBox" value="Có hộp cao cấp">
+    <input type="hidden" name="gra" value="Có giấy GRA">
+    <input type="hidden" name="warranty" value="Bảo hành sáng bóng">
+    <div class="options">
+      <label><input type="checkbox" name="call" value="Gọi xác nhận"> Gọi trước khi giao</label>
+    </div>
+    <div class="grid2">
+      <select name="quantity" required><option value="1">Số lượng: 1</option><option value="2">Số lượng: 2</option><option value="3">Số lượng: 3</option></select>
+      <select name="payment"><option>Thanh toán COD</option></select>
+    </div>
+    <div class="radioBox">
+      <label><input type="radio" name="combo" value="Mua theo bảng giá size + Freeship" checked> 💥 Mua theo bảng giá size + Freeship</label>
+      <label><input type="radio" name="combo" value="Cần shop tư vấn thêm"> 🎁 Cần shop tư vấn thêm trước khi giao</label>
+    </div>
+    <textarea name="note" placeholder="Ghi chú thêm"></textarea>
+    <a id="mapLink" class="map-link" href="#" target="_blank">📍 Mở địa chỉ trên Google Maps</a>
+    <button id="btnSubmit" class="shake-buy">ĐẶT MUA NGAY</button>
+    <div id="msg" class="note"></div>
+  </form>
+</section>
+
+<div class="bottom">
+  <a>🏪<br>Cửa hàng</a>
+  <a>💬<br>Trò chuyện</a>
+  <a class="cart" href="#order">Thêm vào<br>Giỏ hàng</a>
+  <a class="buy shake-buy" href="#order">Mua Ngay</a>
+</div>
+
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbzYviOl-jFNZAOvYRchK99iTH6amjrPiyESWhz59Jwty8xgRsKaZCNpnSdgv-o_GXUK/exec";
+const DEFAULT_PRICE_TABLE = [
+  {type:"1 Chiếc",size:"4mm",code:"MS04",stock:"106",oldPrice:"295000",salePrice:"229999"},
+  {type:"1 Chiếc",size:"4.5mm",code:"MS04.5",stock:"2",oldPrice:"315000",salePrice:"249000"},
+  {type:"1 Chiếc",size:"5mm",code:"MS05",stock:"105",oldPrice:"332000",salePrice:"259000"},
+  {type:"1 Chiếc",size:"6mm",code:"MS06",stock:"50",oldPrice:"444000",salePrice:"305999"},
+  {type:"1 Chiếc",size:"6.8mm",code:"MS06.8",stock:"31",oldPrice:"556000",salePrice:""},
+  {type:"1 Chiếc",size:"7.5mm",code:"MS07.5",stock:"41",oldPrice:"700000",salePrice:"409999"},
+  {type:"1 Đôi",size:"4mm",code:"MS04*2",stock:"56",oldPrice:"600303",salePrice:"399999"},
+  {type:"1 Đôi",size:"4.5mm",code:"MS04.5*2",stock:"3",oldPrice:"616216",salePrice:"439999"},
+  {type:"1 Đôi",size:"5mm",code:"MS05*2",stock:"46",oldPrice:"647895",salePrice:"459999"},
+  {type:"1 Đôi",size:"6mm",code:"MS06*2",stock:"25",oldPrice:"804872",salePrice:"549999"},
+  {type:"1 Đôi",size:"6.8mm",code:"MS06.8*2",stock:"6",oldPrice:"953721",salePrice:"659999"},
+  {type:"1 Đôi",size:"7.5mm",code:"MS07.5*2",stock:"111",oldPrice:"1204000",salePrice:"759999"}
+];
+let priceTable = [...DEFAULT_PRICE_TABLE];
+
+function money(value){
+  const n = Number(String(value || "").replace(/\D/g,""));
+  return n ? n.toLocaleString("vi-VN") + "đ" : "Liên hệ";
+}
+
+function parsePriceTable(value){
+  if(!value) return [...DEFAULT_PRICE_TABLE];
+  if(Array.isArray(value)) return value;
+  try{
+    const parsed = JSON.parse(value);
+    return Array.isArray(parsed) ? parsed : [...DEFAULT_PRICE_TABLE];
+  }catch(e){
+    return [...DEFAULT_PRICE_TABLE];
+  }
+}
+
+function renderPriceTable(){
+  const tbody = document.getElementById("priceTableBody");
+  if(!tbody) return;
+  tbody.innerHTML = "";
+  priceTable.forEach(item=>{
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${item.type || ""}</td><td>${item.size || ""}</td><td>${item.code || ""}</td><td class="sale-price">${money(item.salePrice || item.oldPrice)}</td><td class="old-price">${money(item.oldPrice)}</td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+function syncSizeOptions(){
+  const sizeSelect = document.getElementById("sizeSelect");
+  if(!sizeSelect) return;
+  const selected = sizeSelect.value || "5mm";
+  const sizes = [...new Set(priceTable.map(i=>i.size).filter(Boolean))];
+  sizeSelect.innerHTML = '<option value="">Chọn size đá</option>';
+  sizes.forEach(size=>{
+    const opt = document.createElement("option");
+    opt.value = size;
+    opt.textContent = size;
+    if(size === selected) opt.selected = true;
+    sizeSelect.appendChild(opt);
+  });
+  if(!sizeSelect.value && sizes.includes("5mm")) sizeSelect.value = "5mm";
+}
+
+function setDisplayedPrices(sale, old){
+  document.querySelectorAll(".price").forEach(el=>el.innerText = money(sale));
+  document.querySelectorAll(".old").forEach(el=>el.innerText = money(old));
+  document.querySelectorAll('[name="price"]').forEach(el=>el.value = String(sale || "").replace(/\D/g,""));
+  const selectedPrice = document.getElementById("selectedPriceText");
+  if(selectedPrice) selectedPrice.value = "Giá: " + money(sale);
+}
+
+function updateSelectedPrice(){
+  const variant = document.getElementById("variantSelect")?.value || "1 Đôi";
+  const size = document.getElementById("sizeSelect")?.value || "5mm";
+  const item = priceTable.find(i=>i.type === variant && i.size === size) || priceTable.find(i=>i.type === "1 Đôi" && i.size === "5mm") || priceTable[0];
+  if(!item) return;
+  const sale = item.salePrice || item.oldPrice;
+  setDisplayedPrices(sale, item.oldPrice);
+  const stock = document.getElementById("stockLeft");
+  if(stock && item.stock) stock.innerText = item.stock;
+}
+
+function initPricing(){
+  renderPriceTable();
+  syncSizeOptions();
+  updateSelectedPrice();
+  document.getElementById("variantSelect")?.addEventListener("change", updateSelectedPrice);
+  document.getElementById("sizeSelect")?.addEventListener("change", updateSelectedPrice);
+}
+
+let remain = 14*60+59;
+function tick(){
+  remain = Math.max(0, remain-1);
+  const h = Math.floor(remain/3600);
+  const m = Math.floor((remain%3600)/60);
+  const s = remain%60;
+  document.getElementById("h").innerText = String(h).padStart(2,"0");
+  document.getElementById("m").innerText = String(m).padStart(2,"0");
+  document.getElementById("s").innerText = String(s).padStart(2,"0");
+  document.getElementById("miniTimer").innerText = `00:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
+}
+setInterval(tick,1000); tick();
+
+document.getElementById("orderForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+  const btn = document.getElementById("btnSubmit");
+  const msg = document.getElementById("msg");
+  btn.disabled = true;
+  btn.innerText = "ĐANG GỬI ĐƠN...";
+  const fd = new FormData(e.target);
+  const data = Object.fromEntries(fd.entries());
+  data.product = "Bông nụ bạc S925 kim cương Moissanite cao cấp";
+  data.price = data.price || document.querySelector('[name="price"]')?.value || "459999";
+  data.source = location.href;
+
+  try{
+    await fetch(API_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+    msg.innerText = "Đặt hàng thành công! Shop sẽ gọi xác nhận đơn.";
+    e.target.reset();
+    syncSizeOptions();
+    updateSelectedPrice();
+    btn.innerText = "ĐÃ GỬI THÀNH CÔNG";
+  }catch(err){
+    msg.innerText = "Lỗi gửi đơn. Vui lòng thử lại.";
+    btn.innerText = "ĐẶT MUA NGAY";
+  }
+
+  btn.disabled = false;
+});
+
+const toastData = [
+  {name:"Nguyễn Hồng Anh", text:"Đã mua 1 đôi 5mm + Freeship", time:"5 phút trước", avatar:"images/avatar1.png"},
+  {name:"Trần Thanh Mai", text:"Đã đặt bông tai 6mm + hộp cao cấp", time:"8 phút trước", avatar:"images/avatar2.png"},
+  {name:"Lê Thu Trang", text:"Đã mua combo 2 đôi + kiểm định GRA", time:"12 phút trước", avatar:"images/avatar3.png"},
+  {name:"Phạm Ngọc Linh", text:"Vừa để lại số điện thoại tư vấn", time:"15 phút trước", avatar:"images/avatar4.png"},
+  {name:"Thuỳ Dương", text:"Đã mua size 7.5mm làm quà tặng", time:"20 phút trước", avatar:"images/avatar5.png"},
+  {name:"Nguyễn Anh Tuấn", text:"Đã đặt size 5mm làm quà tặng", time:"22 phút trước", avatar:"images/avatar6.png"},
+  {name:"Trần Đức Minh", text:"Đã mua 1 đôi tặng vợ, thanh toán COD", time:"28 phút trước", avatar:"images/avatar7.png"}
+];
+
+let toastIndex = 0;
+function showLiveToast(){
+  const t = toastData[toastIndex % toastData.length];
+  document.getElementById("toastAvatar").src = t.avatar;
+  document.getElementById("toastName").innerText = t.name;
+  document.getElementById("toastText").innerText = t.text;
+  document.getElementById("toastTime").innerText = t.time;
+  const box = document.getElementById("liveToast");
+  box.classList.add("show");
+  setTimeout(()=>box.classList.remove("show"), 4500);
+  toastIndex++;
+}
+setTimeout(showLiveToast, 1200);
+setInterval(showLiveToast, 9000);
+
+
+/* ===== COD Pro simulated live counters ===== */
+let soldBase = 1238;
+let leadBase = 27;
+
+function updateLiveCounters(){
+  const viewer = 28 + Math.floor(Math.random()*42);
+  document.getElementById("viewerCount").innerText = viewer;
+
+  if(Math.random() > .62){
+    soldBase += 1;
+    document.getElementById("soldCount").innerText = soldBase.toLocaleString("vi-VN");
+  }
+
+  if(Math.random() > .74){
+    leadBase += 1;
+    document.getElementById("leadCount").innerText = leadBase;
+  }
+}
+setInterval(updateLiveCounters, 4500);
+updateLiveCounters();
+
+/* ===== Vietnam address API v2: Tỉnh/TP -> Phường/Xã ===== */
+const ADDRESS_API = "https://provinces.open-api.vn/api/v2";
+const provinceEl = document.getElementById("province");
+const provinceOptionsEl = document.getElementById("provinceOptions");
+const wardEl = document.getElementById("ward");
+const wardOptionsEl = document.getElementById("wardOptions");
+const addressEl = document.querySelector('[name="address"]');
+const mapLinkEl = document.getElementById("mapLink");
+let provinceList = [];
+let wardList = [];
+let addressDetectTimer;
+let provinceDetectTimer;
+
+function normalizeAddressText(text){
+  return String(text || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/đ/g, "d")
+    .replace(/[^\w\s]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function loosePlaceName(name){
+  return normalizeAddressText(name)
+    .replace(/^(tinh|thanh pho|tp|phuong|xa|thi tran)\s+/, "")
+    .trim();
+}
+
+function findPlaceInAddress(address, places){
+  const normalizedAddress = normalizeAddressText(address);
+  return places
+    .map(place => ({
+      place,
+      name: normalizeAddressText(place.name),
+      loose: loosePlaceName(place.name)
+    }))
+    .filter(item => item.name && (
+      normalizedAddress.includes(item.name) ||
+      (item.loose.length >= 3 && normalizedAddress.includes(item.loose))
+    ))
+    .sort((a, b) => b.name.length - a.name.length)[0]?.place;
+}
+
+function findPlaceByInput(value, places){
+  const normalizedValue = normalizeAddressText(value);
+  if(!normalizedValue) return null;
+  return places.find(place => (
+    normalizeAddressText(place.name) === normalizedValue ||
+    loosePlaceName(place.name) === normalizedValue
+  )) || findPlaceInAddress(value, places);
+}
+
+function isSamePlaceText(text, placeName){
+  const normalizedText = normalizeAddressText(text);
+  const normalizedPlace = normalizeAddressText(placeName);
+  const loosePlace = loosePlaceName(placeName);
+  return normalizedText === normalizedPlace ||
+    normalizedText === loosePlace ||
+    normalizedText.includes(normalizedPlace) ||
+    (loosePlace.length >= 3 && normalizedText.includes(loosePlace));
+}
+
+function cleanupDetectedAddressParts(province, ward){
+  const parts = addressEl.value
+    .split(",")
+    .map(part => part.trim())
+    .filter(Boolean);
+  if(parts.length <= 1) return;
+
+  const cleanedParts = parts.filter(part => {
+    if(province && isSamePlaceText(part, province.name)) return false;
+    if(ward && isSamePlaceText(part, ward.name)) return false;
+    return true;
+  });
+
+  if(cleanedParts.length && cleanedParts.length < parts.length){
+    addressEl.value = cleanedParts.join(", ");
+  }
+}
+
+async function loadProvinces(){
+  try{
+    provinceEl.classList.add("select-loading");
+    const res = await fetch(`${ADDRESS_API}/p/?depth=1`);
+    provinceList = await res.json();
+    provinceOptionsEl.innerHTML = "";
+    provinceList.forEach(p=>{
+      const opt = document.createElement("option");
+      opt.value = p.name;
+      provinceOptionsEl.appendChild(opt);
+    });
+    await detectAddressParts();
+  }catch(e){
+    console.log("Không tải được danh sách tỉnh/thành", e);
+  }finally{
+    provinceEl.classList.remove("select-loading");
+  }
+}
+
+async function loadWards(provinceCode){
+  wardOptionsEl.innerHTML = "";
+  wardList = [];
+  if(!provinceCode) return;
+  try{
+    wardEl.classList.add("select-loading");
+    const res = await fetch(`${ADDRESS_API}/p/${provinceCode}?depth=2`);
+    const data = await res.json();
+    wardList = data.wards || [];
+    wardList.forEach(w=>{
+      const opt = document.createElement("option");
+      opt.value = w.name;
+      wardOptionsEl.appendChild(opt);
+    });
+  }catch(e){
+    console.log("Không tải được phường/xã", e);
+  }finally{
+    wardEl.classList.remove("select-loading");
+  }
+}
+
+function selectProvinceByName(name){
+  const province = provinceList.find(p => p.name === name) || findPlaceByInput(name, provinceList);
+  if(!province) return "";
+  provinceEl.value = province.name;
+  return province.code;
+}
+
+function selectWardByName(name){
+  const ward = wardList.find(w => w.name === name) || findPlaceByInput(name, wardList);
+  if(ward) wardEl.value = ward.name;
+}
+
+async function detectAddressParts(){
+  const rawAddress = addressEl.value;
+  if(rawAddress.trim().length < 8 || !provinceList.length) return;
+
+  const matchedProvince = findPlaceInAddress(rawAddress, provinceList);
+  if(matchedProvince && provinceEl.value !== matchedProvince.name){
+    const code = selectProvinceByName(matchedProvince.name);
+    await loadWards(code);
+  }
+
+  const matchedWard = findPlaceInAddress(rawAddress, wardList);
+  if(matchedWard) selectWardByName(matchedWard.name);
+  if(matchedProvince || matchedWard){
+    cleanupDetectedAddressParts(matchedProvince, matchedWard);
+  }
+  updateMapLink();
+}
+
+async function detectProvinceInput(){
+  if(!provinceList.length) return;
+  const matchedProvince = findPlaceByInput(provinceEl.value, provinceList);
+  if(!matchedProvince){
+    wardEl.value = "";
+    wardOptionsEl.innerHTML = "";
+    wardList = [];
+    updateMapLink();
+    return;
+  }
+
+  if(provinceEl.value !== matchedProvince.name) provinceEl.value = matchedProvince.name;
+  await loadWards(matchedProvince.code);
+  const matchedWard = findPlaceByInput(wardEl.value, wardList);
+  if(matchedWard) wardEl.value = matchedWard.name;
+  updateMapLink();
+}
+
+function scheduleAddressDetection(){
+  updateMapLink();
+  clearTimeout(addressDetectTimer);
+  addressDetectTimer = setTimeout(detectAddressParts, 450);
+}
+
+function scheduleProvinceDetection(){
+  clearTimeout(provinceDetectTimer);
+  provinceDetectTimer = setTimeout(detectProvinceInput, 250);
+  updateMapLink();
+}
+
+function updateMapLink(){
+  const fullAddress = [
+    addressEl.value,
+    wardEl.value,
+    provinceEl.value
+  ].filter(Boolean).join(", ");
+  if(fullAddress.length > 8){
+    mapLinkEl.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(fullAddress);
+    mapLinkEl.style.display = "block";
+  }else{
+    mapLinkEl.style.display = "none";
+  }
+}
+
+provinceEl?.addEventListener("input", scheduleProvinceDetection);
+provinceEl?.addEventListener("change", detectProvinceInput);
+wardEl?.addEventListener("change", updateMapLink);
+wardEl?.addEventListener("blur", ()=>selectWardByName(wardEl.value));
+addressEl?.addEventListener("input", scheduleAddressDetection);
+addressEl?.addEventListener("blur", detectAddressParts);
+loadProvinces();
+
+
+/* ===== Load cấu hình từ Admin Google Sheet ===== */
+async function loadSiteConfig(){
+  if(!API_URL || API_URL.includes("DÁN_LINK")) return;
+
+  try{
+    const res = await fetch(API_URL + "?action=config");
+    const cfg = await res.json();
+    if(!cfg || !cfg.ok) return;
+
+    const c = cfg.config || {};
+
+    const setText = (selector, value) => {
+      if(value === undefined || value === null || value === "") return;
+      document.querySelectorAll(selector).forEach(el => el.innerText = value);
+    };
+
+    if(c.productName){
+      document.title = c.productName;
+      const titleEl = document.querySelector(".title");
+      if(titleEl) titleEl.innerText = c.productName;
+    }
+
+    if(c.salePrice){
+      setDisplayedPrices(c.salePrice, c.oldPrice || "");
+    }
+
+    if(c.discountText){
+      document.querySelectorAll(".sale").forEach(el=>{
+        el.innerText = c.discountText;
+      });
+    }
+
+    if(c.stockLeft){
+      const stock = document.getElementById("stockLeft");
+      if(stock) stock.innerText = c.stockLeft;
+    }
+
+    if(c.priceTable){
+      priceTable = parsePriceTable(c.priceTable);
+      renderPriceTable();
+      syncSizeOptions();
+      updateSelectedPrice();
+    }
+
+    if(c.soldCount){
+      const sold = document.getElementById("soldCount");
+      if(sold) sold.innerText = Number(c.soldCount).toLocaleString("vi-VN");
+    }
+
+    if(c.shopName){
+      document.querySelectorAll("h2").forEach(h=>{
+        if(h.innerText.includes("Phú Gia Diamond")) h.innerText = c.shopName;
+      });
+    }
+
+  }catch(e){
+    console.log("Không tải được cấu hình admin", e);
+  }
+}
+initPricing();
+window.addEventListener("load", loadSiteConfig);
+
+</script>
+</body>
+</html>
