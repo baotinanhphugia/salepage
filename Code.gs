@@ -15,6 +15,26 @@ const SHEET_ABANDONED = "Khach_Roi_Rat";
 const SHEET_PRICES_VN = "BangGia_VN";
 const SHEET_PRICES_TW = "BangGia_TW";
 
+/**
+ * HÀM CẤP QUYỀN GOOGLE DRIVE VÀ TẠO THƯ MỤC LƯU ẢNH THẺ CƯ TRÚ
+ * 👉 Hãy chọn hàm này và bấm nút "Chạy" (Run) 1 lần trên Google Apps Script để Cấp Quyền Truy Cập Drive!
+ */
+function capQuyenGoogleDriveVaTaoThuMuc() {
+  const folderName = "PhuGia_TheCuTru_TW";
+  let folder;
+  const folders = DriveApp.getFoldersByName(folderName);
+  if (folders.hasNext()) {
+    folder = folders.next();
+  } else {
+    folder = DriveApp.createFolder(folderName);
+  }
+  try {
+    folder.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+  } catch(e) {}
+  Logger.log("✅ Đã cấp quyền Google Drive thành công! Thư mục lưu ảnh ARC: " + folder.getUrl());
+  return folder.getUrl();
+}
+
 function doGet(e) {
   const action = (e && e.parameter && e.parameter.action) || "";
   const market = String((e && e.parameter && e.parameter.market) || "VN").toUpperCase();

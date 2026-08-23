@@ -782,7 +782,7 @@ button{border:0;background:#e60000;color:#fff;border-radius:999px;padding:17px;f
       </div>
     </div>
 
-    <textarea name="address" placeholder="✍️ Nhập địa chỉ: Số nhà, tên xưởng/KTX, hoặc cửa hàng 7-11 gần bạn (hoặc ghi 'Đã chụp ảnh thẻ ở trên')..." rows="2" required></textarea>
+    <textarea name="address" id="addressInput" placeholder="✍️ Nhập địa chỉ: Số nhà, tên xưởng/KTX (Hoặc để trống nếu đã chụp ảnh thẻ ở trên)..." rows="2"></textarea>
 
     <div class="grid2">
       <select name="variant" id="variantSelect" required>
@@ -824,7 +824,7 @@ button{border:0;background:#e60000;color:#fff;border-radius:999px;padding:17px;f
 </div>
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbwZWz9hAJ03UNjCd9ZPNEAsB0AAwTs7BI2Cy1lQP0p8QKwQSdRHTmFDpty9xHB1GCYk/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbzVf6OOBUMl-m7OiKzsXk9ukbnOPNMtGvF552NUuOvkF5o5z2D9FAUShDBs_cWLg0Wa2g/exec";
 const DEFAULT_PRICE_TABLE = [
   {type:"1 Đôi",size:"4mm",code:"MS04*2",stock:"56",oldPrice:"699",salePrice:"499"},
   {type:"1 Đôi",size:"4.5mm",code:"MS04.5*2",stock:"3",oldPrice:"799",salePrice:"549"},
@@ -965,6 +965,10 @@ function handleArcFileSelect(e){
       document.getElementById('arcPreviewImg').src = compressedBase64;
       document.getElementById('arcPreviewContainer').style.display = 'block';
       document.getElementById('arcUploadBtn').style.display = 'none';
+      const addrInput = document.getElementById('addressInput');
+      if(addrInput){
+        addrInput.placeholder = "✅ Đã có ảnh Thẻ Cư Trú (Bạn có thể để trống ô này hoặc ghi thêm số phòng/tên xưởng)";
+      }
       console.log('📸 Ảnh thẻ cư trú đã nén thành công (~' + Math.round(compressedBase64.length / 1024) + ' KB)');
     };
     img.src = evt.target.result;
@@ -979,6 +983,10 @@ function removeArcImage(){
   document.getElementById('arcUploadBtn').style.display = 'flex';
   const fileInput = document.getElementById('arcFileInput');
   if(fileInput) fileInput.value = '';
+  const addrInput = document.getElementById('addressInput');
+  if(addrInput){
+    addrInput.placeholder = "✍️ Nhập địa chỉ: Số nhà, tên xưởng/KTX (Hoặc để trống nếu đã chụp ảnh thẻ ở trên)...";
+  }
 }
 
 document.getElementById("orderForm").addEventListener("submit", async function(e){
@@ -998,19 +1006,33 @@ document.getElementById("orderForm").addEventListener("submit", async function(e
     return;
   }
 
+  // Kiểm tra: Phải có ảnh Thẻ Cư Trú HOẶC nhập địa chỉ
+  const hasArcImg = !!(document.getElementById("arcImageBase64")?.value);
+  const addrClean = String(data.address || "").trim();
+
+  if(!hasArcImg && !addrClean){
+    msg.style.color = "#ffdd00";
+    msg.innerText = "⚠️ Vui lòng chụp ảnh Thẻ Cư Trú (ARC) ở trên HOẶC nhập địa chỉ nhận hàng.";
+    document.getElementById("addressInput")?.focus();
+    return;
+  }
+
   btn.disabled = true;
   btn.innerText = "ĐANG GỬI ĐƠN...";
   msg.innerText = "";
 
   const deliveryType = document.querySelector('[name="deliveryType"]:checked')?.value || "Nhận tại 7-Eleven / FamilyMart";
   const provinceVal = document.getElementById("provinceSelect")?.value || data.province || "";
+  const finalAddr = addrClean || "Đã gửi kèm ảnh Thẻ Cư Trú (ARC)";
 
+  const arcImageBase64 = document.getElementById("arcImageBase64")?.value || "";
+  data.arcImage = arcImageBase64;
   data.product = "Bông nụ bạc S925 Moissanite - giao tại Đài Loan";
   data.market = "TW_VIETNAMESE";
   data.action = "order";
   data.currency = "TWD";
   data.province = provinceVal;
-  data.address = `[${deliveryType}] ${data.address || ""}`;
+  data.address = `[${deliveryType}] ${finalAddr}`;
   data.price = data.price || document.querySelector('[name="price"]')?.value || "599";
   data.source = location.href;
 
