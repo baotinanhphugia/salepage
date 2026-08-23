@@ -407,6 +407,108 @@ button{border:0;background:#e60000;color:#fff;border-radius:999px;padding:17px;f
   margin-top:2px;
   line-height:1.35;
 }
+
+/* ===== KHỐI CHỤP ẢNH THẺ CƯ TRÚ (ARC) ===== */
+.arc-upload-box{
+  background:linear-gradient(180deg, #f0fdf4, #e8f7ee);
+  border:2px dashed #16a34a;
+  border-radius:14px;
+  padding:14px;
+  margin-bottom:12px;
+  box-shadow:0 2px 8px rgba(22,163,74,0.08);
+}
+.arc-header{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  margin-bottom:10px;
+}
+.arc-icon{
+  font-size:24px;
+  line-height:1;
+  flex-shrink:0;
+}
+.arc-title{
+  color:#15803d;
+  font-weight:900;
+  font-size:14px;
+  line-height:1.3;
+}
+.arc-sub{
+  font-size:12px;
+  color:#4b5563;
+  margin-top:3px;
+  line-height:1.35;
+}
+.arc-btn-container{
+  margin:10px 0;
+}
+.arc-custom-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  background:#16a34a;
+  color:#fff;
+  font-size:14px;
+  font-weight:800;
+  padding:12px 16px;
+  border-radius:10px;
+  cursor:pointer;
+  text-align:center;
+  box-shadow:0 4px 12px rgba(22,163,74,0.25);
+  transition:all .2s;
+}
+.arc-custom-btn:active{
+  transform:scale(0.98);
+  background:#15803d;
+}
+.arc-preview-container{
+  margin:10px 0;
+}
+.arc-preview-card{
+  background:#fff;
+  border:1.5px solid #86efac;
+  border-radius:10px;
+  padding:10px;
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+.arc-preview-card img{
+  width:80px;
+  height:60px;
+  object-fit:cover;
+  border-radius:6px;
+  border:1px solid #ddd;
+}
+.arc-preview-info{
+  flex:1;
+}
+.arc-status-badge{
+  display:block;
+  font-size:12.5px;
+  font-weight:bold;
+  color:#15803d;
+  margin-bottom:6px;
+}
+.arc-btn-delete{
+  background:#fee2e2;
+  color:#dc2626;
+  border:1px solid #fca5a5;
+  border-radius:6px;
+  padding:4px 10px;
+  font-size:12px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.arc-security-badge{
+  font-size:11.5px;
+  color:#166534;
+  line-height:1.4;
+  padding-top:6px;
+  border-top:1px dashed #bbf7d0;
+}
 </style>
 </head>
 <body>
@@ -645,7 +747,42 @@ button{border:0;background:#e60000;color:#fff;border-radius:999px;padding:17px;f
       <option value="澎湖/金門/連江 - Đảo ngoài">澎湖 / 金門 / 連江 (Đảo ngoài)</option>
     </select>
 
-    <textarea name="address" placeholder="✍️ Nhập địa chỉ: Số nhà, tên đường, tên xưởng/KTX, hoặc tên cửa hàng 7-11 gần bạn (Shop sẽ gọi xác nhận lại)..." rows="2" required></textarea>
+    <!-- KHỐI CHỤP ẢNH THẺ CƯ TRÚ (ARC) / ĐỊA CHỈ XƯỞNG -->
+    <div class="arc-upload-box">
+      <div class="arc-header">
+        <span class="arc-icon">📸</span>
+        <div>
+          <div class="arc-title">CHỤP ẢNH MẶT SAU THẺ CƯ TRÚ (ARC) / TÊN XƯỞNG</div>
+          <div class="arc-sub">Khuyên dùng nếu bạn không rành gõ địa chỉ tiếng Trung (Shop sẽ lấy địa chỉ in mã vận đơn)</div>
+        </div>
+      </div>
+
+      <div class="arc-btn-container">
+        <label for="arcFileInput" class="arc-custom-btn" id="arcUploadBtn">
+          <span>📷 Chụp ảnh / Tải ảnh Thẻ Cư Trú lên</span>
+        </label>
+        <input type="file" id="arcFileInput" accept="image/*" capture="environment" style="display:none;" onchange="handleArcFileSelect(event)">
+      </div>
+
+      <!-- KHUNG XEM TRƯỚC ẢNH -->
+      <div id="arcPreviewContainer" class="arc-preview-container" style="display:none;">
+        <div class="arc-preview-card">
+          <img id="arcPreviewImg" src="" alt="Ảnh thẻ cư trú">
+          <div class="arc-preview-info">
+            <span class="arc-status-badge">✅ Đã tải ảnh lên thành công</span>
+            <button type="button" class="arc-btn-delete" onclick="removeArcImage()">🗑️ Xóa & chụp lại</button>
+          </div>
+        </div>
+      </div>
+
+      <input type="hidden" name="arcImage" id="arcImageBase64" value="">
+
+      <div class="arc-security-badge">
+        🔒 <b>Bảo mật 100%:</b> Ảnh chỉ dùng để đối chiếu địa chỉ in vận đơn giao hàng, cam kết bảo mật tuyệt đối.
+      </div>
+    </div>
+
+    <textarea name="address" placeholder="✍️ Nhập địa chỉ: Số nhà, tên xưởng/KTX, hoặc cửa hàng 7-11 gần bạn (hoặc ghi 'Đã chụp ảnh thẻ ở trên')..." rows="2" required></textarea>
 
     <div class="grid2">
       <select name="variant" id="variantSelect" required>
@@ -687,7 +824,7 @@ button{border:0;background:#e60000;color:#fff;border-radius:999px;padding:17px;f
 </div>
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbxSFfKJbOupaKEK4LJ-NErquZXGXnml6EuRSuskzh4mPPQcoc-YwKykWBZdTwNw2mc/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbwZWz9hAJ03UNjCd9ZPNEAsB0AAwTs7BI2Cy1lQP0p8QKwQSdRHTmFDpty9xHB1GCYk/exec";
 const DEFAULT_PRICE_TABLE = [
   {type:"1 Đôi",size:"4mm",code:"MS04*2",stock:"56",oldPrice:"699",salePrice:"499"},
   {type:"1 Đôi",size:"4.5mm",code:"MS04.5*2",stock:"3",oldPrice:"799",salePrice:"549"},
@@ -792,6 +929,58 @@ function updateDelivActive(radioEl){
   radioEl.closest('.deliv-card')?.classList.add('active');
 }
 
+/* ===== XỬ LÝ CHỤP & NÉN ẢNH THẺ CƯ TRÚ (ARC) BẰNG CANVAS ===== */
+function handleArcFileSelect(e){
+  const file = e.target.files?.[0];
+  if(!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(evt){
+    const img = new Image();
+    img.onload = function(){
+      const canvas = document.createElement('canvas');
+      let width = img.width;
+      let height = img.height;
+      const maxDimension = 1200; // Đủ sắc nét đọc rõ từng chữ Hán
+
+      if(width > maxDimension || height > maxDimension){
+        if(width > height){
+          height = Math.round((height * maxDimension) / width);
+          width = maxDimension;
+        } else {
+          width = Math.round((width * maxDimension) / height);
+          height = maxDimension;
+        }
+      }
+
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, width, height);
+
+      // Nén chất lượng JPEG 0.82 (~100-200KB)
+      const compressedBase64 = canvas.toDataURL('image/jpeg', 0.82);
+
+      document.getElementById('arcImageBase64').value = compressedBase64;
+      document.getElementById('arcPreviewImg').src = compressedBase64;
+      document.getElementById('arcPreviewContainer').style.display = 'block';
+      document.getElementById('arcUploadBtn').style.display = 'none';
+      console.log('📸 Ảnh thẻ cư trú đã nén thành công (~' + Math.round(compressedBase64.length / 1024) + ' KB)');
+    };
+    img.src = evt.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function removeArcImage(){
+  document.getElementById('arcImageBase64').value = '';
+  document.getElementById('arcPreviewImg').src = '';
+  document.getElementById('arcPreviewContainer').style.display = 'none';
+  document.getElementById('arcUploadBtn').style.display = 'flex';
+  const fileInput = document.getElementById('arcFileInput');
+  if(fileInput) fileInput.value = '';
+}
+
 document.getElementById("orderForm").addEventListener("submit", async function(e){
   e.preventDefault();
   const btn = document.getElementById("btnSubmit");
@@ -834,7 +1023,7 @@ document.getElementById("orderForm").addEventListener("submit", async function(e
     });
     isOrderSubmitted = true;
     msg.style.color = "#a7f3d0";
-    msg.innerText = "✅ Đặt hàng thành công! Shop sẽ gọi tiếng Việt xác nhận đơn trước khi giao.";
+    msg.innerText = "✅ Đặt hàng thành công! Shop sẽ kiểm tra địa chỉ trên ảnh thẻ cư trú và giao hàng sớm nhất.";
     
     // Bắn sự kiện Purchase & Lead cho Meta Pixel
     if(window.fbq && currentPixelId){

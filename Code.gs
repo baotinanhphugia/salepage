@@ -156,6 +156,8 @@ function handleOrder_(data) {
     const marketLabel = isTaiwan ? "Đài Loan (NT$)" : "Việt Nam (VNĐ)";
     const priceFormatted = isTaiwan ? `NT$ ${formatMoney_(priceRaw)}` : `${formatMoney_(priceRaw)}đ`;
 
+    const arcImageUrl = saveImageToDrive_(data.arcImage, orderId);
+
     // Ghi an toàn vào Google Sheet (Chống Formula Injection)
     sheet.appendRow([
       createdAt,
@@ -175,6 +177,7 @@ function handleOrder_(data) {
       cleanText_(data.payment || (isTaiwan ? "COD Đài Loan" : "COD")),
       priceFormatted,
       cleanText_(data.note || ""),
+      arcImageUrl || "Không tải lên",
       mapsLink,
       "Mới"
     ]);
@@ -185,6 +188,7 @@ function handleOrder_(data) {
     // Bắn tin nhắn Telegram & Gmail an toàn không bao giờ làm gián đoạn việc ghi đơn
     const flag = isTaiwan ? "🇹🇼" : "🇻🇳";
     const headerTitle = isTaiwan ? "ĐƠN HÀNG MỚI TẠI ĐÀI LOAN" : "ĐƠN HÀNG MỚI TẠI VIỆT NAM";
+    const arcText = arcImageUrl ? `\n🪪 Ảnh Thẻ Cư Trú (ARC): ${arcImageUrl}` : "";
 
     const message =
 `💎 ${flag} ${headerTitle} - PHÚ GIA DIAMOND
@@ -192,7 +196,7 @@ function handleOrder_(data) {
 🌐 Thị trường: ${marketLabel}
 👤 Khách hàng: ${cleanText_(data.name || "")}
 📞 Số điện thoại: ${cleanText_(data.phone || "")} ${isTaiwan ? "(Đài Loan 🇹🇼)" : ""}
-📍 Địa chỉ giao: ${fullAddress}
+📍 Địa chỉ giao: ${fullAddress}${arcText}
 🗺 Chỉ đường Maps: ${mapsLink}
 💍 Sản phẩm: ${productName}
 📦 Phân loại: ${cleanText_(data.variant || "")}
@@ -208,9 +212,43 @@ function handleOrder_(data) {
     safeSendTelegram_(message);
     safeSendGmail_(orderId, message);
 
-    return json_({ ok: true, orderId, market: marketLabel });
+    return json_({ ok: true, orderId, market: marketLabel, arcImageUrl: arcImageUrl || null });
   } finally {
     lock.releaseLock();
+  }
+}
+
+/**
+ * Lưu ảnh Base64 vào Google Drive và trả về đường link xem ảnh
+ */
+function saveImageToDrive_(base64Data, orderId) {
+  if (!base64Data || typeof base64Data !== "string" || !base64Data.includes("base64,")) {
+    return "";
+  }
+  try {
+    const parts = base64Data.split("base64,");
+    const base64Clean = parts[1];
+    const decoded = Utilities.base64Decode(base64Clean);
+    const blob = Utilities.newBlob(decoded, "image/jpeg", "ARC_" + orderId + ".jpg");
+
+    const folderName = "PhuGia_TheCuTru_TW";
+    let folder;
+    const folders = DriveApp.getFoldersByName(folderName);
+    if (folders.hasNext()) {
+      folder = folders.next();
+    } else {
+      folder = DriveApp.createFolder(folderName);
+    }
+
+    const file = folder.createFile(blob);
+    try {
+      file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+    } catch(e) {}
+
+    return file.getUrl();
+  } catch (err) {
+    console.log("Lỗi lưu ảnh thẻ cư trú lên Google Drive: " + err.toString());
+    return "";
   }
 }
 
@@ -219,7 +257,7 @@ function getOrCreateOrdersSheet_(ss) {
   const headers = [
     "Thời gian","Mã đơn","Thị trường","Sản phẩm","Họ tên","Số điện thoại","Địa chỉ",
     "Tỉnh/TP","Quận/Huyện","Phường/Xã","Phân loại","Size","Số lượng","Combo",
-    "Thanh toán","Giá","Ghi chú","Google Maps","Trạng thái"
+    "Thanh toán","Giá","Ghi chú","Ảnh Thẻ Cư Trú (ARC)","Google Maps","Trạng thái"
   ];
 
   if (!sheet) {
