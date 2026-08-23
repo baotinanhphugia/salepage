@@ -4,6 +4,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Phú Gia Diamond - Bông tai Moissanite</title>
+
+<!-- Meta Pixel Base Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+
+let currentPixelId = "";
+function initMetaPixel(pixelId){
+  const cleanId = String(pixelId || "").trim();
+  if(!cleanId || cleanId === "YOUR_PIXEL_ID" || cleanId === currentPixelId) return;
+  currentPixelId = cleanId;
+  fbq('init', cleanId);
+  fbq('track', 'PageView');
+  console.log("🎯 Meta Pixel Initialized:", cleanId);
+}
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Base Code -->
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Arial,Helvetica,sans-serif;background:#f3f4f6;color:#111;max-width:480px;margin:auto}
@@ -223,6 +247,92 @@ button{border:0;background:#e60000;color:#fff;border-radius:999px;padding:17px;f
   text-align:center;
   margin-top:6px;
 }
+.risk-reversal-card{
+  background:#ffffff;
+  border:2px solid #16a34a;
+  border-radius:12px;
+  padding:14px 16px;
+  margin:14px 0;
+  box-shadow:0 4px 14px rgba(22,163,74,0.15);
+}
+.rr-title{
+  color:#15803d;
+  font-size:16px;
+  font-weight:900;
+  text-align:center;
+  margin-bottom:10px;
+  letter-spacing:0.3px;
+}
+.rr-list{
+  display:grid;
+  gap:10px;
+}
+.rr-item{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  font-size:14px;
+  line-height:1.45;
+  color:#1f2937;
+}
+.rr-icon{
+  font-size:20px;
+  line-height:1;
+  flex-shrink:0;
+}
+.rr-item b{
+  color:#111827;
+}
+
+/* ===== GỢI Ý CHỌN SIZE ĐÁ ===== */
+.size-guide-card{
+  background:linear-gradient(135deg, #fffbf0, #fff7e6);
+  border:1.5px solid #ffd591;
+  border-radius:12px;
+  padding:14px;
+  margin-top:14px;
+}
+.sg-title{
+  color:#d46b08;
+  font-size:15px;
+  font-weight:900;
+  margin-bottom:10px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.sg-item{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  padding:8px 0;
+  border-bottom:1px dashed #ffe7ba;
+  font-size:13.5px;
+}
+.sg-item:last-child{
+  border-bottom:0;
+  padding-bottom:0;
+}
+.sg-tag{
+  background:#fff;
+  border:1px solid #d46b08;
+  color:#d46b08;
+  padding:3px 8px;
+  border-radius:6px;
+  font-weight:800;
+  font-size:12.5px;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.sg-tag.hot{
+  background:#e60033;
+  border-color:#e60033;
+  color:#fff;
+}
+.sg-desc{
+  color:#434343;
+  line-height:1.35;
+}
 </style>
 </head>
 <body>
@@ -287,6 +397,23 @@ button{border:0;background:#e60000;color:#fff;border-radius:999px;padding:17px;f
     </table>
   </div>
   <div class="price-hint">Chọn phân loại và size ở form đặt hàng để hệ thống tự tính giá.</div>
+
+  <!-- KHỐI GỢI Ý CHỌN SIZE ĐÁ -->
+  <div class="size-guide-card">
+    <div class="sg-title">💡 GỢI Ý CHỌN SIZE ĐÁ PHÙ HỢP:</div>
+    <div class="sg-item">
+      <span class="sg-tag">4.5mm - 5mm</span>
+      <span class="sg-desc">Nhẹ nhàng, thanh lịch công sở, đeo hàng ngày.</span>
+    </div>
+    <div class="sg-item">
+      <span class="sg-tag hot">6mm - 6.8mm 🔥</span>
+      <span class="sg-desc"><b>Sang trọng</b>, chuẩn size kim cương 1 Carat được chuộng nhất.</span>
+    </div>
+    <div class="sg-item">
+      <span class="sg-tag">7.5mm</span>
+      <span class="sg-desc"><b>Đẳng cấp</b>, lấp lánh nổi bật cho các buổi tiệc tùng.</span>
+    </div>
+  </div>
 </section>
 
 <section class="sec">
@@ -361,6 +488,26 @@ button{border:0;background:#e60000;color:#fff;border-radius:999px;padding:17px;f
   <div class="count"><b>⚡ Flash Sale</b><div><span id="d">00</span><span id="h">00</span><span id="m">14</span><span id="s">59</span></div></div>
   <div style="background:white;padding:14px 16px"><span class="old">647.895đ</span> <span class="sale">Flash Sale</span> <span class="price">459.999đ</span></div>
   <div style="background:#fff200;text-align:center;font-size:20px;font-weight:900;padding:12px">MUA HÀNG NGAY HÔM NAY ĐỂ NHẬN ƯU ĐÃI</div>
+
+  <!-- KHỐI CAM KẾT 3 KHÔNG TRIỆT TIÊU RỦI RO -->
+  <div class="risk-reversal-card">
+    <div class="rr-title">🛡️ CAM KẾT 3 KHÔNG - AN TÂM TUYỆT ĐỐI</div>
+    <div class="rr-list">
+      <div class="rr-item">
+        <span class="rr-icon">📦</span>
+        <div><b>Được mở hàng kiểm tra:</b> Quý khách được soi đá, thử bút trước khi thanh toán.</div>
+      </div>
+      <div class="rr-item">
+        <span class="rr-icon">📜</span>
+        <div><b>Đền gấp 10 lần:</b> Nếu phát hiện đá nhân tạo CZ hoặc bạc không đúng chuẩn S925.</div>
+      </div>
+      <div class="rr-item">
+        <span class="rr-icon">🔄</span>
+        <div><b>Bảo hành trọn đời:</b> Miễn phí đánh sáng trọn đời + 1 đổi 1 trong 30 ngày nếu có lỗi.</div>
+      </div>
+    </div>
+  </div>
+
   <div class="orderTitle">THÔNG TIN ĐẶT HÀNG</div>
 
   <form id="orderForm">
@@ -369,14 +516,73 @@ button{border:0;background:#e60000;color:#fff;border-radius:999px;padding:17px;f
       <input name="name" placeholder="Họ và tên" required>
       <input name="phone" placeholder="Số điện thoại" required>
     </div>
-    <textarea name="address" placeholder="Địa chỉ nhận hàng" rows="2" required></textarea>
-    <div class="grid2">
-      <input name="province" id="province" list="provinceOptions" placeholder="Tỉnh/Thành phố" autocomplete="off" required>
-      <datalist id="provinceOptions"></datalist>
-      <input name="ward" id="ward" list="wardOptions" placeholder="Phường/Xã" autocomplete="off" required>
-      <datalist id="wardOptions"></datalist>
-      <input type="hidden" name="district" id="district" value="">
-    </div>
+    <select name="province" id="provinceSelect" style="width:100%;padding:14px;border:1.5px solid #bbb;border-radius:10px;font-size:15px;font-weight:bold;background:#fff;color:#111;" required>
+      <option value="">📍 Chọn Tỉnh / Thành phố</option>
+      <option value="Hà Nội" selected>Hà Nội 🔥</option>
+      <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh 🔥</option>
+      <option value="Hưng Yên">Hưng Yên</option>
+      <option value="Bắc Ninh">Bắc Ninh</option>
+      <option value="Hải Phòng">Hải Phòng</option>
+      <option value="Đà Nẵng">Đà Nẵng</option>
+      <option value="Bình Dương">Bình Dương</option>
+      <option value="Đồng Nai">Đồng Nai</option>
+      <option value="Hải Dương">Hải Dương</option>
+      <option value="Quảng Ninh">Quảng Ninh</option>
+      <option value="Thái Bình">Thái Bình</option>
+      <option value="Nam Định">Nam Định</option>
+      <option value="Hà Nam">Hà Nam</option>
+      <option value="Ninh Bình">Ninh Bình</option>
+      <option value="Thanh Hóa">Thanh Hóa</option>
+      <option value="Nghệ An">Nghệ An</option>
+      <option value="Hà Tĩnh">Hà Tĩnh</option>
+      <option value="Quảng Bình">Quảng Bình</option>
+      <option value="Quảng Trị">Quảng Trị</option>
+      <option value="Thừa Thiên Huế">Thừa Thiên Huế</option>
+      <option value="Quảng Nam">Quảng Nam</option>
+      <option value="Quảng Ngãi">Quảng Ngãi</option>
+      <option value="Bình Định">Bình Định</option>
+      <option value="Phú Yên">Phú Yên</option>
+      <option value="Khánh Hòa">Khánh Hòa</option>
+      <option value="Ninh Thuận">Ninh Thuận</option>
+      <option value="Bình Thuận">Bình Thuận</option>
+      <option value="Kon Tum">Kon Tum</option>
+      <option value="Gia Lai">Gia Lai</option>
+      <option value="Đắk Lắk">Đắk Lắk</option>
+      <option value="Đắk Nông">Đắk Nông</option>
+      <option value="Lâm Đồng">Lâm Đồng</option>
+      <option value="Bình Phước">Bình Phước</option>
+      <option value="Tây Ninh">Tây Ninh</option>
+      <option value="Bà Rịa - Vũng Tàu">Bà Rịa - Vũng Tàu</option>
+      <option value="Long An">Long An</option>
+      <option value="Tiền Giang">Tiền Giang</option>
+      <option value="Bến Tre">Bến Tre</option>
+      <option value="Trà Vinh">Trà Vinh</option>
+      <option value="Vĩnh Long">Vĩnh Long</option>
+      <option value="Đồng Tháp">Đồng Tháp</option>
+      <option value="An Giang">An Giang</option>
+      <option value="Kiên Giang">Kiên Giang</option>
+      <option value="Cần Thơ">Cần Thơ</option>
+      <option value="Hậu Giang">Hậu Giang</option>
+      <option value="Sóc Trăng">Sóc Trăng</option>
+      <option value="Bạc Liêu">Bạc Liêu</option>
+      <option value="Cà Mau">Cà Mau</option>
+      <option value="Vĩnh Phúc">Vĩnh Phúc</option>
+      <option value="Phú Thọ">Phú Thọ</option>
+      <option value="Bắc Giang">Bắc Giang</option>
+      <option value="Thái Nguyên">Thái Nguyên</option>
+      <option value="Tuyên Quang">Tuyên Quang</option>
+      <option value="Lạng Sơn">Lạng Sơn</option>
+      <option value="Cao Bằng">Cao Bằng</option>
+      <option value="Bắc Kạn">Bắc Kạn</option>
+      <option value="Hà Giang">Hà Giang</option>
+      <option value="Lào Cai">Lào Cai</option>
+      <option value="Yên Bái">Yên Bái</option>
+      <option value="Sơn La">Sơn La</option>
+      <option value="Hòa Bình">Hòa Bình</option>
+      <option value="Điện Biên">Điện Biên</option>
+      <option value="Lai Châu">Lai Châu</option>
+    </select>
+    <textarea name="address" placeholder="🏠 Số nhà, tên đường, thôn/xóm, phường/xã, quận/huyện..." rows="2" required></textarea>
     <div class="grid2">
       <select name="variant" id="variantSelect" required>
         <option value="1 Đôi">1 Đôi</option>
@@ -418,7 +624,7 @@ button{border:0;background:#e60000;color:#fff;border-radius:999px;padding:17px;f
 </div>
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbzYviOl-jFNZAOvYRchK99iTH6amjrPiyESWhz59Jwty8xgRsKaZCNpnSdgv-o_GXUK/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbxSFfKJbOupaKEK4LJ-NErquZXGXnml6EuRSuskzh4mPPQcoc-YwKykWBZdTwNw2mc/exec";
 const DEFAULT_PRICE_TABLE = [
   {type:"1 Chiếc",size:"4mm",code:"MS04",stock:"106",oldPrice:"295000",salePrice:"229999"},
   {type:"1 Chiếc",size:"4.5mm",code:"MS04.5",stock:"2",oldPrice:"315000",salePrice:"249000"},
@@ -531,8 +737,27 @@ document.getElementById("orderForm").addEventListener("submit", async function(e
   data.source = location.href;
 
   try{
-    await fetch(API_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+    await fetch(API_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(data)});
+    isOrderSubmitted = true;
     msg.innerText = "Đặt hàng thành công! Shop sẽ gọi xác nhận đơn.";
+    
+    // Bắn sự kiện Purchase & Lead cho Meta Pixel
+    if(window.fbq && currentPixelId){
+      const orderVal = Number(String(data.price || "459999").replace(/\D/g,"")) || 459999;
+      fbq('track', 'Purchase', {
+        content_name: data.product || 'Bông nụ bạc S925 kim cương Moissanite',
+        content_category: data.variant || '1 Đôi',
+        value: orderVal,
+        currency: 'VND'
+      });
+      fbq('track', 'Lead', {
+        content_name: data.product || 'Bông nụ bạc S925 kim cương Moissanite',
+        value: orderVal,
+        currency: 'VND'
+      });
+      console.log("🎯 Meta Pixel Event: Purchase & Lead fired (" + orderVal + " VND)");
+    }
+
     e.target.reset();
     syncSizeOptions();
     updateSelectedPrice();
@@ -592,209 +817,27 @@ function updateLiveCounters(){
 setInterval(updateLiveCounters, 4500);
 updateLiveCounters();
 
-/* ===== Vietnam address API v2: Tỉnh/TP -> Phường/Xã ===== */
-const ADDRESS_API = "https://provinces.open-api.vn/api/v2";
-const provinceEl = document.getElementById("province");
-const provinceOptionsEl = document.getElementById("provinceOptions");
-const wardEl = document.getElementById("ward");
-const wardOptionsEl = document.getElementById("wardOptions");
+/* ===== Vietnam Address Helpers & Maps Link ===== */
+const provinceSelectEl = document.getElementById("provinceSelect");
 const addressEl = document.querySelector('[name="address"]');
 const mapLinkEl = document.getElementById("mapLink");
-let provinceList = [];
-let wardList = [];
-let addressDetectTimer;
-let provinceDetectTimer;
-
-function normalizeAddressText(text){
-  return String(text || "")
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/đ/g, "d")
-    .replace(/[^\w\s]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-function loosePlaceName(name){
-  return normalizeAddressText(name)
-    .replace(/^(tinh|thanh pho|tp|phuong|xa|thi tran)\s+/, "")
-    .trim();
-}
-
-function findPlaceInAddress(address, places){
-  const normalizedAddress = normalizeAddressText(address);
-  return places
-    .map(place => ({
-      place,
-      name: normalizeAddressText(place.name),
-      loose: loosePlaceName(place.name)
-    }))
-    .filter(item => item.name && (
-      normalizedAddress.includes(item.name) ||
-      (item.loose.length >= 3 && normalizedAddress.includes(item.loose))
-    ))
-    .sort((a, b) => b.name.length - a.name.length)[0]?.place;
-}
-
-function findPlaceByInput(value, places){
-  const normalizedValue = normalizeAddressText(value);
-  if(!normalizedValue) return null;
-  return places.find(place => (
-    normalizeAddressText(place.name) === normalizedValue ||
-    loosePlaceName(place.name) === normalizedValue
-  )) || findPlaceInAddress(value, places);
-}
-
-function isSamePlaceText(text, placeName){
-  const normalizedText = normalizeAddressText(text);
-  const normalizedPlace = normalizeAddressText(placeName);
-  const loosePlace = loosePlaceName(placeName);
-  return normalizedText === normalizedPlace ||
-    normalizedText === loosePlace ||
-    normalizedText.includes(normalizedPlace) ||
-    (loosePlace.length >= 3 && normalizedText.includes(loosePlace));
-}
-
-function cleanupDetectedAddressParts(province, ward){
-  const parts = addressEl.value
-    .split(",")
-    .map(part => part.trim())
-    .filter(Boolean);
-  if(parts.length <= 1) return;
-
-  const cleanedParts = parts.filter(part => {
-    if(province && isSamePlaceText(part, province.name)) return false;
-    if(ward && isSamePlaceText(part, ward.name)) return false;
-    return true;
-  });
-
-  if(cleanedParts.length && cleanedParts.length < parts.length){
-    addressEl.value = cleanedParts.join(", ");
-  }
-}
-
-async function loadProvinces(){
-  try{
-    provinceEl.classList.add("select-loading");
-    const res = await fetch(`${ADDRESS_API}/p/?depth=1`);
-    provinceList = await res.json();
-    provinceOptionsEl.innerHTML = "";
-    provinceList.forEach(p=>{
-      const opt = document.createElement("option");
-      opt.value = p.name;
-      provinceOptionsEl.appendChild(opt);
-    });
-    await detectAddressParts();
-  }catch(e){
-    console.log("Không tải được danh sách tỉnh/thành", e);
-  }finally{
-    provinceEl.classList.remove("select-loading");
-  }
-}
-
-async function loadWards(provinceCode){
-  wardOptionsEl.innerHTML = "";
-  wardList = [];
-  if(!provinceCode) return;
-  try{
-    wardEl.classList.add("select-loading");
-    const res = await fetch(`${ADDRESS_API}/p/${provinceCode}?depth=2`);
-    const data = await res.json();
-    wardList = data.wards || [];
-    wardList.forEach(w=>{
-      const opt = document.createElement("option");
-      opt.value = w.name;
-      wardOptionsEl.appendChild(opt);
-    });
-  }catch(e){
-    console.log("Không tải được phường/xã", e);
-  }finally{
-    wardEl.classList.remove("select-loading");
-  }
-}
-
-function selectProvinceByName(name){
-  const province = provinceList.find(p => p.name === name) || findPlaceByInput(name, provinceList);
-  if(!province) return "";
-  provinceEl.value = province.name;
-  return province.code;
-}
-
-function selectWardByName(name){
-  const ward = wardList.find(w => w.name === name) || findPlaceByInput(name, wardList);
-  if(ward) wardEl.value = ward.name;
-}
-
-async function detectAddressParts(){
-  const rawAddress = addressEl.value;
-  if(rawAddress.trim().length < 8 || !provinceList.length) return;
-
-  const matchedProvince = findPlaceInAddress(rawAddress, provinceList);
-  if(matchedProvince && provinceEl.value !== matchedProvince.name){
-    const code = selectProvinceByName(matchedProvince.name);
-    await loadWards(code);
-  }
-
-  const matchedWard = findPlaceInAddress(rawAddress, wardList);
-  if(matchedWard) selectWardByName(matchedWard.name);
-  if(matchedProvince || matchedWard){
-    cleanupDetectedAddressParts(matchedProvince, matchedWard);
-  }
-  updateMapLink();
-}
-
-async function detectProvinceInput(){
-  if(!provinceList.length) return;
-  const matchedProvince = findPlaceByInput(provinceEl.value, provinceList);
-  if(!matchedProvince){
-    wardEl.value = "";
-    wardOptionsEl.innerHTML = "";
-    wardList = [];
-    updateMapLink();
-    return;
-  }
-
-  if(provinceEl.value !== matchedProvince.name) provinceEl.value = matchedProvince.name;
-  await loadWards(matchedProvince.code);
-  const matchedWard = findPlaceByInput(wardEl.value, wardList);
-  if(matchedWard) wardEl.value = matchedWard.name;
-  updateMapLink();
-}
-
-function scheduleAddressDetection(){
-  updateMapLink();
-  clearTimeout(addressDetectTimer);
-  addressDetectTimer = setTimeout(detectAddressParts, 450);
-}
-
-function scheduleProvinceDetection(){
-  clearTimeout(provinceDetectTimer);
-  provinceDetectTimer = setTimeout(detectProvinceInput, 250);
-  updateMapLink();
-}
 
 function updateMapLink(){
   const fullAddress = [
-    addressEl.value,
-    wardEl.value,
-    provinceEl.value
+    addressEl ? addressEl.value : "",
+    provinceSelectEl ? provinceSelectEl.value : ""
   ].filter(Boolean).join(", ");
-  if(fullAddress.length > 8){
+  if(fullAddress.length > 5 && mapLinkEl){
     mapLinkEl.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(fullAddress);
     mapLinkEl.style.display = "block";
-  }else{
+  } else if(mapLinkEl) {
     mapLinkEl.style.display = "none";
   }
 }
 
-provinceEl?.addEventListener("input", scheduleProvinceDetection);
-provinceEl?.addEventListener("change", detectProvinceInput);
-wardEl?.addEventListener("change", updateMapLink);
-wardEl?.addEventListener("blur", ()=>selectWardByName(wardEl.value));
-addressEl?.addEventListener("input", scheduleAddressDetection);
-addressEl?.addEventListener("blur", detectAddressParts);
-loadProvinces();
+provinceSelectEl?.addEventListener("change", updateMapLink);
+addressEl?.addEventListener("input", updateMapLink);
+
 
 
 /* ===== Load cấu hình từ Admin Google Sheet ===== */
@@ -802,7 +845,7 @@ async function loadSiteConfig(){
   if(!API_URL || API_URL.includes("DÁN_LINK")) return;
 
   try{
-    const res = await fetch(API_URL + "?action=config");
+    const res = await fetch(API_URL + "?action=config&market=VN");
     const cfg = await res.json();
     if(!cfg || !cfg.ok) return;
 
@@ -852,13 +895,108 @@ async function loadSiteConfig(){
       });
     }
 
+    if(c.facebookPixelId){
+      initMetaPixel(c.facebookPixelId);
+    }
+
   }catch(e){
     console.log("Không tải được cấu hình admin", e);
   }
 }
+
+/* ===== TRACKING SỰ KIỆN INITIATE CHECKOUT ===== */
+let hasTrackedCheckout = false;
+function trackInitiateCheckout(triggerSource){
+  if(hasTrackedCheckout) return;
+  hasTrackedCheckout = true;
+  const currentPrice = Number(String(document.querySelector('[name="price"]')?.value || "459999").replace(/\D/g,"")) || 459999;
+  if(window.fbq && currentPixelId){
+    fbq('track', 'InitiateCheckout', {
+      content_name: 'Bông nụ bạc S925 kim cương Moissanite',
+      value: currentPrice,
+      currency: 'VND'
+    });
+    console.log("🎯 Meta Pixel Event: InitiateCheckout (" + triggerSource + ")");
+  }
+}
+
+document.querySelectorAll('.buy, .cart, a[href="#order"]').forEach(el=>{
+  el.addEventListener('click', ()=>trackInitiateCheckout('Click Buy/Cart Button'));
+});
+
+const orderSection = document.getElementById('order');
+if(orderSection && 'IntersectionObserver' in window){
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        trackInitiateCheckout('Scroll into Order Form');
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.2 });
+  observer.observe(orderSection);
+}
+
+/* ===== CƠ CHẾ BẮT LEAD RƠI RỚT (ABANDONMENT RECOVERY) ===== */
+let leadCaptureTimer = null;
+let lastCapturedPhone = "";
+let isOrderSubmitted = false;
+
+function tryCaptureAbandonedLead(){
+  if(isOrderSubmitted) return;
+  const phoneInput = document.querySelector('input[name="phone"]');
+  const nameInput = document.querySelector('input[name="name"]');
+  const addressInput = document.querySelector('textarea[name="address"]');
+  const provinceSelect = document.getElementById("provinceSelect");
+  const variantSelect = document.getElementById("variantSelect");
+  const sizeSelect = document.getElementById("sizeSelect");
+
+  if(!phoneInput) return;
+  const rawPhone = String(phoneInput.value || "").replace(/\D/g, "");
+  const vnPhoneRegex = /^(0[3|5|7|8|9]|84[3|5|7|8|9])[0-9]{8}$/;
+
+  if(!vnPhoneRegex.test(rawPhone) || rawPhone === lastCapturedPhone) return;
+
+  const leadPayload = {
+    action: "abandonedLead",
+    market: "VN",
+    phone: rawPhone,
+    name: nameInput ? nameInput.value.trim() : "",
+    address: addressInput ? addressInput.value.trim() : "",
+    province: provinceSelect ? provinceSelect.value : "",
+    variant: variantSelect ? variantSelect.value : "1 Đôi",
+    size: sizeSelect ? sizeSelect.value : "5mm",
+    product: document.querySelector('.title')?.innerText || "Bông nụ bạc S925 kim cương Moissanite",
+    source: location.href
+  };
+
+  lastCapturedPhone = rawPhone;
+  console.log("⚡ Auto-saving abandoned lead to Sheet:", rawPhone);
+
+  fetch(API_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify(leadPayload)
+  }).catch(e => console.log("Lead capture err", e));
+}
+
+const phoneEl = document.querySelector('input[name="phone"]');
+if(phoneEl){
+  phoneEl.addEventListener("input", ()=>{
+    clearTimeout(leadCaptureTimer);
+    leadCaptureTimer = setTimeout(tryCaptureAbandonedLead, 3000);
+  });
+  phoneEl.addEventListener("blur", ()=>{
+    clearTimeout(leadCaptureTimer);
+    leadCaptureTimer = setTimeout(tryCaptureAbandonedLead, 800);
+  });
+}
+
 initPricing();
 window.addEventListener("load", loadSiteConfig);
 
 </script>
 </body>
 </html>
+
