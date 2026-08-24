@@ -338,19 +338,19 @@ function defaultConfig_() {
 ]`,
 
     // --- THỊ TRƯỜNG ĐÀI LOAN (NT$) ---
-    productNameTW: "Bông nụ bạc S925 Moissanite cao cấp - giao tại Đài Loan",
-    salePriceTW: "599",
-    oldPriceTW: "899",
+    productNameTW: "Bông nụ bạc S925 Moissanite cao cấp (4 Chấu) - giao tại Đài Loan",
+    salePriceTW: "1114",
+    oldPriceTW: "1590",
     discountTextTW: "Flash Sale",
     stockLeftTW: "23",
     shortDescriptionTW: "Bạc thật S925, Moissanite sáng đẹp, full kiểm định GRA quốc tế, hỗ trợ giao tận tay tại Đài Loan.",
     priceTableTW: `[
-  {"type":"1 Đôi","size":"4mm","code":"MS04*2","stock":"56","oldPrice":"699","salePrice":"499"},
-  {"type":"1 Đôi","size":"4.5mm","code":"MS04.5*2","stock":"3","oldPrice":"799","salePrice":"549"},
-  {"type":"1 Đôi","size":"5mm","code":"MS05*2","stock":"46","oldPrice":"899","salePrice":"599"},
-  {"type":"1 Đôi","size":"6mm","code":"MS06*2","stock":"25","oldPrice":"1099","salePrice":"699"},
-  {"type":"1 Đôi","size":"6.8mm","code":"MS06.8*2","stock":"6","oldPrice":"1299","salePrice":"799"},
-  {"type":"1 Đôi","size":"7.5mm","code":"MS07.5*2","stock":"111","oldPrice":"1499","salePrice":"899"}
+  {"type":"1 Đôi","size":"4mm","code":"MS04*2","stock":"56","oldPrice":"1590","salePrice":"1114"},
+  {"type":"1 Đôi","size":"4.5mm","code":"MS04.5*2","stock":"12","oldPrice":"1690","salePrice":"1175"},
+  {"type":"1 Đôi","size":"5mm","code":"MS05*2","stock":"46","oldPrice":"1990","salePrice":"1406"},
+  {"type":"1 Đôi","size":"6mm","code":"MS06*2","stock":"25","oldPrice":"2350","salePrice":"1652"},
+  {"type":"1 Đôi","size":"7mm","code":"MS07*2","stock":"18","oldPrice":"3390","salePrice":"2403"},
+  {"type":"1 Đôi","size":"7.5mm","code":"MS07.5*2","stock":"111","oldPrice":"3990","salePrice":"2804"}
 ]`,
 
     bankName: "",
@@ -491,12 +491,12 @@ function defaultPriceTableVN_() {
 
 function defaultPriceTableTW_() {
   return [
-    {"type":"1 Đôi","size":"4mm","code":"MS04*2","stock":"56","oldPrice":"699","salePrice":"499"},
-    {"type":"1 Đôi","size":"4.5mm","code":"MS04.5*2","stock":"3","oldPrice":"799","salePrice":"549"},
-    {"type":"1 Đôi","size":"5mm","code":"MS05*2","stock":"46","oldPrice":"899","salePrice":"599"},
-    {"type":"1 Đôi","size":"6mm","code":"MS06*2","stock":"25","oldPrice":"1099","salePrice":"699"},
-    {"type":"1 Đôi","size":"6.8mm","code":"MS06.8*2","stock":"6","oldPrice":"1299","salePrice":"799"},
-    {"type":"1 Đôi","size":"7.5mm","code":"MS07.5*2","stock":"111","oldPrice":"1499","salePrice":"899"}
+    {"type":"1 Đôi","size":"4mm","code":"MS04*2","stock":"56","oldPrice":"1590","salePrice":"1114"},
+    {"type":"1 Đôi","size":"4.5mm","code":"MS04.5*2","stock":"12","oldPrice":"1690","salePrice":"1175"},
+    {"type":"1 Đôi","size":"5mm","code":"MS05*2","stock":"46","oldPrice":"1990","salePrice":"1406"},
+    {"type":"1 Đôi","size":"6mm","code":"MS06*2","stock":"25","oldPrice":"2350","salePrice":"1652"},
+    {"type":"1 Đôi","size":"7mm","code":"MS07*2","stock":"18","oldPrice":"3390","salePrice":"2403"},
+    {"type":"1 Đôi","size":"7.5mm","code":"MS07.5*2","stock":"111","oldPrice":"3990","salePrice":"2804"}
   ];
 }
 
