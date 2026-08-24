@@ -688,7 +688,7 @@ button{border:0;background:#e60000;color:#fff;border-radius:999px;padding:17px;f
   <div class="tw-helper-banner">
     <div class="tw-helper-title">🇻🇳 HỖ TRỢ ĐẶT HÀNG TẠI ĐÀI LOAN:</div>
     <div class="tw-helper-desc">
-      <p>🔹 <b>Không biết tiếng Trung?</b> Chỉ cần chụp ảnh <b>mặt sau Thẻ Cư Trú (ARC)</b> ở bên dưới.</p>
+      <p>🔹 <b>Không biết tiếng Trung?</b> Chỉ cần chụp ảnh <b>phần địa chỉ nhận hàng hoặc địa chỉ trên Thẻ Cư Trú (ARC)</b> ở bên dưới.</p>
       <p>🔹 Shop sẽ tự động lấy địa chỉ in mã vận đơn giao tới tận nơi hoặc tới cửa hàng 7-Eleven / FamilyMart gần bạn!</p>
     </div>
   </div>
@@ -754,21 +754,21 @@ button{border:0;background:#e60000;color:#fff;border-radius:999px;padding:17px;f
     </select>
 
     <!-- Ô NHẬP ĐỊA CHỈ CHI TIẾT -->
-    <textarea name="address" id="addressInput" placeholder="✍️ Nhập địa chỉ: Số nhà, tên xưởng/KTX... (Hoặc để trống nếu chụp ảnh thẻ ở bên dưới)" rows="2"></textarea>
+    <textarea name="address" id="addressInput" placeholder="✍️ Nhập địa chỉ: Số nhà, tên xưởng/KTX... (Hoặc để trống nếu chụp ảnh địa chỉ ở bên dưới)" rows="2"></textarea>
 
-    <!-- KHỐI CHỤP ẢNH THẺ CƯ TRÚ (ARC) / ĐỊA CHỈ XƯỞNG -->
+    <!-- KHỐI CHỤP ẢNH ĐỊA CHỈ HOẶC ĐỊA CHỈ TRÊN THẺ CƯ TRÚ -->
     <div class="arc-upload-box">
       <div class="arc-header">
         <span class="arc-icon">📸</span>
         <div>
-          <div class="arc-title">CHỤP ẢNH MẶT SAU THẺ CƯ TRÚ (ARC) / TÊN XƯỞNG</div>
-          <div class="arc-sub">Khuyên dùng nếu bạn không rành gõ tiếng Trung (Có thể để trống ô địa chỉ ở trên)</div>
+          <div class="arc-title">CHỤP ẢNH ĐỊA CHỈ HOẶC ĐỊA CHỈ TRÊN THẺ CƯ TRÚ</div>
+          <div class="arc-sub">Nếu bạn không biết gõ địa chỉ tiếng Trung, hãy chụp ảnh phần địa chỉ nhận hàng. Có thể che mã thẻ/số ARC, shop chỉ cần địa chỉ để giao hàng.</div>
         </div>
       </div>
 
       <div class="arc-btn-container">
         <label for="arcFileInput" class="arc-custom-btn" id="arcUploadBtn">
-          <span>📷 Chụp ảnh / Tải ảnh Thẻ Cư Trú lên</span>
+          <span>📷 Chụp ảnh / Tải ảnh Địa chỉ lên</span>
         </label>
         <input type="file" id="arcFileInput" accept="image/*" capture="environment" style="display:none;" onchange="handleArcFileSelect(event)">
       </div>
@@ -776,9 +776,9 @@ button{border:0;background:#e60000;color:#fff;border-radius:999px;padding:17px;f
       <!-- KHUNG XEM TRƯỚC ẢNH -->
       <div id="arcPreviewContainer" class="arc-preview-container" style="display:none;">
         <div class="arc-preview-card">
-          <img id="arcPreviewImg" src="" alt="Ảnh thẻ cư trú">
+          <img id="arcPreviewImg" src="" alt="Ảnh địa chỉ giao hàng">
           <div class="arc-preview-info">
-            <span class="arc-status-badge">✅ Đã tải ảnh lên thành công</span>
+            <span class="arc-status-badge">✅ Đã tải ảnh địa chỉ thành công</span>
             <button type="button" class="arc-btn-delete" onclick="removeArcImage()">🗑️ Xóa & chụp lại</button>
           </div>
         </div>
@@ -787,7 +787,7 @@ button{border:0;background:#e60000;color:#fff;border-radius:999px;padding:17px;f
       <input type="hidden" name="arcImage" id="arcImageBase64" value="">
 
       <div class="arc-security-badge">
-        🔒 <b>Bảo mật 100%:</b> Ảnh chỉ dùng để đối chiếu địa chỉ in vận đơn giao hàng, cam kết bảo mật tuyệt đối.
+        🔒 <b>Bảo mật 100%:</b> Bạn hoàn toàn có thể che mã số thẻ ARC, shop chỉ cần địa chỉ tiếng Trung để in mã vận đơn giao hàng.
       </div>
     </div>
 
@@ -813,10 +813,7 @@ button{border:0;background:#e60000;color:#fff;border-radius:999px;padding:17px;f
       <select name="quantity" required><option value="1">Số lượng: 1 đôi</option><option value="2">Số lượng: 2 đôi</option><option value="3">Số lượng: 3 đôi</option></select>
       <select name="payment"><option>COD nhận hàng trả tiền (NT$)</option></select>
     </div>
-    <div class="radioBox">
-      <label><input type="radio" name="combo" value="Mua 1 Đôi theo bảng giá NT$ + Hỗ trợ giao tại Đài Loan" checked> 💥 Mua 1 Đôi theo bảng giá NT$ + Hỗ trợ giao tại Đài Loan</label>
-      <label><input type="radio" name="combo" value="Mua 2 Đôi (Tặng hộp cao cấp + Hỗ trợ giao tận nơi)"> 🎁 Mua 2 Đôi (Tặng hộp cao cấp + Hỗ trợ giao tận nơi)</label>
-    </div>
+    <input type="hidden" name="combo" value="Mua theo bảng giá NT$ + Hỗ trợ giao tại Đài Loan">
     <textarea name="note" placeholder="Ghi chú thêm (thời gian nhận hàng, ca làm việc...)"></textarea>
     <a id="mapLink" class="map-link" href="#" target="_blank">📍 Mở địa chỉ trên Google Maps</a>
     <button id="btnSubmit" class="shake-buy">ĐẶT HÀNG NGAY</button>
@@ -975,9 +972,9 @@ function handleArcFileSelect(e){
       document.getElementById('arcUploadBtn').style.display = 'none';
       const addrInput = document.getElementById('addressInput');
       if(addrInput){
-        addrInput.placeholder = "✅ Đã có ảnh Thẻ Cư Trú (Bạn có thể để trống ô này hoặc ghi thêm số phòng/tên xưởng)";
+        addrInput.placeholder = "✅ Đã có ảnh địa chỉ (Bạn có thể để trống ô này hoặc ghi thêm số phòng/tên xưởng)";
       }
-      console.log('📸 Ảnh thẻ cư trú đã nén thành công (~' + Math.round(compressedBase64.length / 1024) + ' KB)');
+      console.log('📸 Ảnh địa chỉ đã nén thành công (~' + Math.round(compressedBase64.length / 1024) + ' KB)');
     };
     img.src = evt.target.result;
   };
@@ -993,7 +990,7 @@ function removeArcImage(){
   if(fileInput) fileInput.value = '';
   const addrInput = document.getElementById('addressInput');
   if(addrInput){
-    addrInput.placeholder = "✍️ Nhập địa chỉ: Số nhà, tên xưởng/KTX... (Hoặc để trống nếu chụp ảnh thẻ ở bên dưới)";
+    addrInput.placeholder = "✍️ Nhập địa chỉ: Số nhà, tên xưởng/KTX... (Hoặc để trống nếu chụp ảnh địa chỉ ở bên dưới)";
   }
 }
 
@@ -1014,13 +1011,13 @@ document.getElementById("orderForm").addEventListener("submit", async function(e
     return;
   }
 
-  // Kiểm tra: Phải có ảnh Thẻ Cư Trú HOẶC nhập địa chỉ
+  // Kiểm tra: Phải có ảnh địa chỉ HOẶC nhập địa chỉ
   const hasArcImg = !!(document.getElementById("arcImageBase64")?.value);
   const addrClean = String(data.address || "").trim();
 
   if(!hasArcImg && !addrClean){
     msg.style.color = "#ffdd00";
-    msg.innerText = "⚠️ Vui lòng chụp ảnh Thẻ Cư Trú (ARC) ở trên HOẶC nhập địa chỉ nhận hàng.";
+    msg.innerText = "⚠️ Vui lòng chụp ảnh địa chỉ / Thẻ Cư Trú ở trên HOẶC nhập địa chỉ nhận hàng.";
     document.getElementById("addressInput")?.focus();
     return;
   }
@@ -1031,7 +1028,7 @@ document.getElementById("orderForm").addEventListener("submit", async function(e
 
   const deliveryType = document.querySelector('[name="deliveryType"]:checked')?.value || "Nhận tại siêu thị 7-Eleven";
   const provinceVal = document.getElementById("provinceSelect")?.value || data.province || "";
-  const finalAddr = addrClean || "Đã gửi kèm ảnh Thẻ Cư Trú (ARC)";
+  const finalAddr = addrClean || "Đã gửi kèm ảnh địa chỉ / Thẻ Cư Trú";
 
   const arcImageBase64 = document.getElementById("arcImageBase64")?.value || "";
   data.arcImage = arcImageBase64;
@@ -1053,7 +1050,7 @@ document.getElementById("orderForm").addEventListener("submit", async function(e
     });
     isOrderSubmitted = true;
     msg.style.color = "#a7f3d0";
-    msg.innerText = "✅ Đặt hàng thành công! Shop sẽ kiểm tra địa chỉ trên ảnh thẻ cư trú và giao hàng sớm nhất.";
+    msg.innerText = "✅ Đặt hàng thành công! Shop sẽ kiểm tra địa chỉ và giao hàng sớm nhất.";
     
     // Bắn sự kiện Purchase & Lead cho Meta Pixel
     if(window.fbq && currentPixelId){
