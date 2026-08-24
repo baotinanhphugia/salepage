@@ -333,6 +333,216 @@ button{border:0;background:#e60000;color:#fff;border-radius:999px;padding:17px;f
   color:#434343;
   line-height:1.35;
 }
+
+/* ===== MODAL POPUP ĐẶT HÀNG THÀNH CÔNG ===== */
+.order-success-modal{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:99999;
+  padding:16px;
+  box-sizing:border-box;
+}
+.order-success-modal.show{
+  display:flex;
+}
+.osm-backdrop{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.7);
+  backdrop-filter:blur(6px);
+  animation:osmFadeIn .25s ease-out;
+}
+.osm-card{
+  position:relative;
+  background:#ffffff;
+  border-radius:20px;
+  max-width:440px;
+  width:100%;
+  padding:24px 20px;
+  box-sizing:border-box;
+  text-align:center;
+  box-shadow:0 25px 60px rgba(0,0,0,0.35);
+  animation:osmScaleUp .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index:2;
+  max-height:90vh;
+  overflow-y:auto;
+}
+@keyframes osmFadeIn{from{opacity:0}to{opacity:1}}
+@keyframes osmScaleUp{from{opacity:0;transform:scale(0.85)}to{opacity:1;transform:scale(1)}}
+
+.osm-close{
+  position:absolute;
+  top:14px;
+  right:14px;
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  background:#f3f4f6;
+  border:none;
+  font-size:16px;
+  font-weight:bold;
+  color:#666;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:all .2s;
+}
+.osm-close:hover{
+  background:#e5e7eb;
+  color:#111;
+}
+.osm-icon-wrap{
+  position:relative;
+  width:72px;
+  height:72px;
+  margin:0 auto 12px;
+}
+.osm-icon-circle{
+  width:72px;
+  height:72px;
+  border-radius:50%;
+  background:linear-gradient(135deg, #10b981, #059669);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:38px;
+  font-weight:900;
+  box-shadow:0 10px 25px rgba(16,185,129,0.4);
+  animation:osmPulse 1.5s infinite;
+}
+@keyframes osmPulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.06);box-shadow:0 14px 30px rgba(16,185,129,0.55)}
+}
+.osm-sparkles{
+  position:absolute;
+  top:-6px;
+  right:-6px;
+  font-size:22px;
+  animation:osmRotate 2s infinite ease-in-out;
+}
+@keyframes osmRotate{
+  0%,100%{transform:rotate(0deg) scale(1)}
+  50%{transform:rotate(20deg) scale(1.2)}
+}
+.osm-badge{
+  display:inline-block;
+  background:#ecfdf5;
+  color:#059669;
+  font-weight:900;
+  font-size:13px;
+  padding:4px 12px;
+  border-radius:20px;
+  margin-bottom:6px;
+  letter-spacing:0.5px;
+}
+.osm-title{
+  margin:0 0 6px;
+  font-size:20px;
+  font-weight:900;
+  color:#111827;
+}
+.osm-sub{
+  margin:0 0 16px;
+  font-size:13.5px;
+  color:#6b7280;
+  line-height:1.45;
+}
+.osm-details{
+  background:#f9fafb;
+  border:1px solid #e5e7eb;
+  border-radius:14px;
+  padding:12px 14px;
+  margin-bottom:14px;
+  text-align:left;
+  font-size:13px;
+  color:#374151;
+}
+.osm-row{
+  display:flex;
+  justify-content:space-between;
+  padding:6px 0;
+  border-bottom:1px dashed #e5e7eb;
+}
+.osm-row:last-child{
+  border-bottom:none;
+}
+.osm-row b{
+  color:#111827;
+  text-align:right;
+  max-width:60%;
+}
+.osm-row.total{
+  font-size:14.5px;
+  color:#dc2626;
+  font-weight:900;
+}
+.osm-row.total b{
+  color:#dc2626;
+  font-size:16px;
+}
+.osm-promise{
+  background:#fffbeb;
+  border:1px solid #fde68a;
+  border-radius:12px;
+  padding:10px 12px;
+  margin-bottom:16px;
+  font-size:12px;
+  color:#92400e;
+  text-align:left;
+  line-height:1.45;
+}
+.osm-promise div{
+  margin-bottom:4px;
+}
+.osm-promise div:last-child{margin-bottom:0}
+.osm-actions{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.osm-btn-confirm{
+  background:linear-gradient(135deg, #e60033, #ff1a4b);
+  color:#fff;
+  font-weight:900;
+  font-size:15px;
+  border:none;
+  border-radius:12px;
+  padding:14px;
+  cursor:pointer;
+  box-shadow:0 6px 20px rgba(230,0,51,0.35);
+  transition:all .2s;
+}
+.osm-btn-confirm:hover{
+  transform:translateY(-1px);
+  box-shadow:0 8px 24px rgba(230,0,51,0.45);
+}
+.osm-btn-call{
+  background:#f3f4f6;
+  color:#374151;
+  font-weight:700;
+  font-size:13.5px;
+  border-radius:10px;
+  padding:10px;
+  text-decoration:none;
+  display:inline-block;
+  transition:all .2s;
+  text-align:center;
+}
+.osm-btn-call:hover{
+  background:#e5e7eb;
+}
 </style>
 </head>
 <body>
@@ -623,6 +833,33 @@ button{border:0;background:#e60000;color:#fff;border-radius:999px;padding:17px;f
   <a class="buy shake-buy" href="#order">Mua Ngay</a>
 </div>
 
+<!-- POPUP XÁC NHẬN ĐẶT HÀNG THÀNH CÔNG -->
+<div id="orderSuccessModal" class="order-success-modal">
+  <div class="osm-backdrop" onclick="closeOrderSuccessModal()"></div>
+  <div class="osm-card">
+    <button type="button" class="osm-close" onclick="closeOrderSuccessModal()">✕</button>
+    <div class="osm-icon-wrap">
+      <div class="osm-icon-circle">✓</div>
+      <div class="osm-sparkles">✨</div>
+    </div>
+    <div class="osm-badge">🎉 ĐẶT HÀNG THÀNH CÔNG!</div>
+    <h3 class="osm-title">Cảm ơn bạn đã tin tưởng lựa chọn</h3>
+    <p class="osm-sub">Đơn hàng của bạn đã được tiếp nhận và chuyển đến bộ phận đóng gói.</p>
+    
+    <div class="osm-details" id="osmDetails"></div>
+
+    <div class="osm-promise">
+      <div>📦 <b>Giao hàng toàn quốc:</b> Được mở hộp kiểm tra & thử bút soi đá trước khi thanh toán.</div>
+      <div>🛡️ <b>Bảo hành chính hãng:</b> Đổi trả 1-1 trong 30 ngày, bảo hành làm sáng bạc trọn đời.</div>
+    </div>
+
+    <div class="osm-actions">
+      <button type="button" class="osm-btn-confirm" onclick="closeOrderSuccessModal()">XÁC NHẬN & ĐÓNG</button>
+      <a href="tel:0398138678" class="osm-btn-call">📞 Hotline hỗ trợ: 0398.138.678</a>
+    </div>
+  </div>
+</div>
+
 <script>
 const API_URL = "https://script.google.com/macros/s/AKfycbyvJ9KtpHmEkLHcHkj3-RElwQq262jD8EpZ_AvxDbBbSwoMtNnnIgbAlqQE71k60BAjvw/exec";
 const DEFAULT_PRICE_TABLE = [
@@ -739,8 +976,12 @@ document.getElementById("orderForm").addEventListener("submit", async function(e
   try{
     await fetch(API_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(data)});
     isOrderSubmitted = true;
-    msg.innerText = "Đặt hàng thành công! Shop sẽ gọi xác nhận đơn.";
+    msg.style.color = "#a7f3d0";
+    msg.innerText = "✅ Đặt hàng thành công! Shop sẽ liên hệ gửi hàng sớm nhất.";
     
+    // Hiển thị Popup xác nhận đặt hàng thành công
+    showOrderSuccessModal(data);
+
     // Bắn sự kiện Purchase & Lead cho Meta Pixel
     if(window.fbq && currentPixelId){
       const orderVal = Number(String(data.price || "459999").replace(/\D/g,"")) || 459999;
@@ -769,6 +1010,38 @@ document.getElementById("orderForm").addEventListener("submit", async function(e
 
   btn.disabled = false;
 });
+
+function showOrderSuccessModal(orderData){
+  const modal = document.getElementById("orderSuccessModal");
+  if(!modal) return;
+  const details = document.getElementById("osmDetails");
+  if(details){
+    const priceFormatted = Number(String(orderData.price || 0).replace(/\D/g,"")).toLocaleString("vi-VN") + "đ";
+    const now = new Date();
+    const timeStr = `${now.getFullYear()}${String(now.getMonth()+1).padStart(2,"0")}${String(now.getDate()).padStart(2,"0")}-${String(now.getHours()).padStart(2,"0")}${String(now.getMinutes()).padStart(2,"0")}`;
+    const code = "PGD-VN-" + timeStr;
+    const fullAddr = [orderData.address, orderData.province].filter(Boolean).join(", ");
+    
+    details.innerHTML = `
+      <div class="osm-row"><span style="color:#6b7280">Mã đơn:</span><b>${code}</b></div>
+      <div class="osm-row"><span style="color:#6b7280">Người nhận:</span><b>${orderData.name || ""}</b></div>
+      <div class="osm-row"><span style="color:#6b7280">Số điện thoại:</span><b>${orderData.phone || ""}</b></div>
+      <div class="osm-row"><span style="color:#6b7280">Địa chỉ:</span><b>${fullAddr}</b></div>
+      <div class="osm-row"><span style="color:#6b7280">Sản phẩm:</span><b>${orderData.variant || "1 Đôi"} (Size ${orderData.size || "5mm"})</b></div>
+      <div class="osm-row total"><span>Tổng tiền COD:</span><b>${priceFormatted}</b></div>
+    `;
+  }
+  modal.classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+
+function closeOrderSuccessModal(){
+  const modal = document.getElementById("orderSuccessModal");
+  if(modal){
+    modal.classList.remove("show");
+    document.body.style.overflow = "";
+  }
+}
 
 const toastData = [
   {name:"Nguyễn Hồng Anh", text:"Đã mua 1 đôi 5mm + Freeship", time:"5 phút trước", avatar:"images/avatar1.png"},
