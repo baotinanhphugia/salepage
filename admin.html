@@ -805,31 +805,72 @@ tr:hover td { background: rgba(255, 255, 255, 0.02); }
 
   <!-- TAB 5: HƯỚNG DẪN CHI TIẾT (USER GUIDE) -->
   <section id="guide" class="panel card">
-    <h2>📖 Hướng Dẫn Sử Dụng & Vận Hành Đơn Hàng Đài Loan</h2>
-    <p class="small">Tài liệu hướng dẫn quản lý kho & xử lý đơn hàng COD Đài Loan.</p><br>
+    <h2>📖 Cẩm Nang Hướng Dẫn Vận Hành Hệ Thống Bán Hàng Đài Loan (COD)</h2>
+    <p class="small">Tài liệu chi tiết hướng dẫn quản lý giá, xử lý đơn hàng, lưu trữ ảnh thẻ cư trú và cài đặt thông báo tự động.</p><br>
 
     <div class="guide-box">
+      <!-- BƯỚC 1 -->
       <div class="guide-step">
         <div class="step-num">1</div>
         <div class="step-content">
-          <h4>💎 Quản lý Bảng giá & Tồn kho</h4>
-          <p>Chỉnh sửa trực tiếp giá bán, giá gốc và tồn kho của từng size đá (4mm – 7.5mm) trong Tab <b>Bảng giá Sản phẩm</b> rồi bấm <b>Lưu vào Google Sheets</b>.</p>
+          <h4>💎 Quản Lý Bảng Giá & Tồn Kho Từng Size (NT$)</h4>
+          <p>
+            • <b>Cách chỉnh sửa:</b> Vào Tab <b>💎 Bảng giá Sản phẩm (NT$)</b> &rarr; Bạn có thể sửa trực tiếp Tên sản phẩm, Giá bán ưu đãi, Giá gốc và Số lượng tồn kho của 6 size 4 chấu (từ <code>4mm</code> đến <code>7.5mm</code>).<br>
+            • <b>Lưu dữ liệu:</b> Sau khi chỉnh sửa xong, cuộn xuống dưới bấm nút <b>💾 LƯU TOÀN BỘ CẤU HÌNH VÀO GOOGLE SHEETS</b>. Landing Page sẽ tự động cập nhật giá mới ngay lập tức!<br>
+            • <b>Cơ chế trừ kho:</b> Mỗi khi khách đặt hàng thành công, hệ thống tự động tìm đúng size khách chọn và <b>trừ tồn kho</b> tương ứng.
+          </p>
         </div>
       </div>
 
+      <!-- BƯỚC 2 -->
       <div class="guide-step">
         <div class="step-num">2</div>
         <div class="step-content">
-          <h4>📸 Kiểm tra Ảnh Thẻ Cư Trú (ARC) / Địa chỉ xưởng</h4>
-          <p>Khi khách hàng gửi ảnh chụp Thẻ Cư Trú hoặc Card xưởng, ảnh sẽ tự động được lưu vào thư mục <b>PhuGia_TheCuTru_TW</b> trên Google Drive. Bạn chỉ cần nhấn vào link ảnh trong bảng đơn hàng để đối chiếu in vận đơn 7-Eleven / FamilyMart.</p>
+          <h4>📸 Xử Lý Đơn Hàng & Xem Ảnh Thẻ Cư Trú (ARC) / Card Xưởng</h4>
+          <p>
+            • Đối với khách hàng tại Đài Loan không gõ được tiếng Trung hoặc không nhớ rõ địa chỉ xưởng, khách có thể chọn <b>Chụp ảnh Thẻ Cư Trú (ARC)</b> hoặc <b>Card địa chỉ xưởng</b>.<br>
+            • Hệ thống tự động nén ảnh chất lượng cao và tải trực tiếp lên thư mục <b><code>PhuGia_TheCuTru_TW</code></b> trên Google Drive của bạn.<br>
+            • Tại Tab <b>📦 Quản lý Đơn hàng</b> hoặc trên Google Sheets, bạn chỉ cần bấm vào nút <b><code>🖼️ Xem ảnh ARC</code></b> để mở ảnh xem ngay và in vận đơn gửi qua <b>7-Eleven / FamilyMart</b> hoặc giao tận tay KTX.
+          </p>
         </div>
       </div>
 
+      <!-- BƯỚC 3 -->
       <div class="guide-step">
         <div class="step-num">3</div>
         <div class="step-content">
-          <h4>🔔 Thông báo Telegram tự động</h4>
-          <p>Mỗi khi có khách đặt hàng mới tại Đài Loan, bot Telegram sẽ tự động gửi tin nhắn báo tên, SĐT, địa chỉ, tổng tiền NT$ và link xem ảnh thẻ cư trú theo thời gian thực.</p>
+          <h4>🔔 Cài Đặt Chuông Báo Đơn Hàng Qua Telegram (Miễn phí 100%)</h4>
+          <p>
+            • <b>Bước 3.1:</b> Mở ứng dụng Telegram, tìm kiếm bot <code>@BotFather</code> &rarr; Gửi tin nhắn <code>/newbot</code> &rarr; Đặt tên cho bot và copy mã <b>Bot Token</b> (dạng: <code>1234567890:AAH...</code>).<br>
+            • <b>Bước 3.2:</b> Tìm bot <code>@userinfobot</code> &rarr; Bấm <code>/start</code> để lấy <b>Chat ID</b> cá nhân của bạn (hoặc tạo nhóm chat chung rồi add bot vào để lấy Chat ID nhóm).<br>
+            • <b>Bước 3.3:</b> Dán <b>Bot Token</b> và <b>Chat ID</b> vào Tab <b>🔔 Telegram & Gmail</b> rồi bấm <b>Lưu</b>. Mỗi khi có khách đặt đơn mới tại Đài Loan, Telegram sẽ đổ chuông báo ngay kèm thông tin khách và link ảnh Drive!
+          </p>
+        </div>
+      </div>
+
+      <!-- BƯỚC 4 -->
+      <div class="guide-step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>🎯 Gắn Mã Meta (Facebook) Pixel Để Chạy Quảng Cáo Ads</h4>
+          <p>
+            • Mở <b>Trình quản lý sự kiện (Events Manager)</b> trên Facebook Ads &rarr; Sao chép mã <b>Pixel ID</b> (dãy số gồm 15-16 số, ví dụ: <code>123456789012345</code>).<br>
+            • Vào Tab <b>🏪 Shop & Ngân hàng</b> &rarr; Dán mã vào ô <b>🎯 Meta Pixel ID</b> &rarr; Bấm <b>Lưu</b>.<br>
+            • Landing Page sẽ tự động kích hoạt mã theo dõi chuẩn của Facebook (<code>PageView</code>, <code>InitiateCheckout</code>, <code>Purchase</code>) giúp tối ưu hóa chuyển đổi quảng cáo.
+          </p>
+        </div>
+      </div>
+
+      <!-- BƯỚC 5 -->
+      <div class="guide-step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <h4>🔒 Đổi Mật Khẩu Quản Trị & Bảo Mật Hệ Thống</h4>
+          <p>
+            • Mật khẩu quản trị mặc định là <code>123456</code>.<br>
+            • Để đổi mật khẩu mới: Tại màn hình Đăng nhập, chọn Tab <b>🔄 Đổi mật khẩu</b> &rarr; Nhập mật khẩu cũ, mật khẩu mới và xác nhận.<br>
+            • Hệ thống tích hợp sẵn khóa bảo vệ chống dò mật khẩu (nhập sai quá 5 lần sẽ tự động khóa 10 phút để chống hacker).
+          </p>
         </div>
       </div>
     </div>
