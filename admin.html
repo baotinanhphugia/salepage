@@ -651,7 +651,7 @@ tr:hover td { background: rgba(255, 255, 255, 0.02); }
       <img class="brandLogo" src="images/logo-phu-gia.jpeg" alt="Phú Gia Diamond" onerror="this.src='avatar1.svg'">
       <div>
         <div class="logo">PHÚ GIA DIAMOND ADMIN</div>
-        <div class="small">Quản lý Bảng giá 2 Quốc gia (Việt Nam & Đài Loan), Đơn hàng & Cấu hình bảo mật.</div>
+        <div class="small">Bảng điều khiển Quản trị Bán hàng & Đơn hàng Đài Loan (NT$).</div>
       </div>
     </div>
     <div class="header-actions">
@@ -663,13 +663,12 @@ tr:hover td { background: rgba(255, 255, 255, 0.02); }
   <!-- Quick Bar -->
   <div class="quick-bar">
     <div class="small">
-      <strong>Đồng bộ:</strong> Bảng giá được đồng bộ 2 chiều với 2 Sheet <b>BangGia_VN</b> & <b>BangGia_TW</b>.
+      <strong>Hệ thống:</strong> Quản trị Bán hàng & Đơn hàng Phú Gia Diamond (Đài Loan).
     </div>
     <div class="quick-btns">
       <button class="btn2" onclick="loadConfig()">🔄 Tải lại cấu hình</button>
       <button class="btn2" onclick="loadOrders()">📦 Xem đơn hàng</button>
-      <button class="btn2" onclick="openLanding('index.html')">🇻🇳 Trang Việt Nam</button>
-      <button class="btn2" onclick="openLanding('taiwan.html')">🇹🇼 Trang Đài Loan</button>
+      <button class="btn2" onclick="openLanding('index.html')">🌐 Mở Trang Bán Hàng</button>
     </div>
   </div>
 
@@ -677,82 +676,37 @@ tr:hover td { background: rgba(255, 255, 255, 0.02); }
 
   <!-- Tabs Navigation -->
   <nav class="tabs">
-    <button class="tab active" onclick="showTab('productVN')">🇻🇳 Bảng giá Việt Nam (VNĐ)</button>
-    <button class="tab" onclick="showTab('productTW')">🇹🇼 Bảng giá Đài Loan (NT$)</button>
-    <button class="tab" onclick="showTab('shop')">🏪 Shop & Chuyển khoản</button>
+    <button class="tab active" onclick="showTab('productTW')">💎 Bảng giá Sản phẩm (NT$)</button>
+    <button class="tab" onclick="showTab('shop')">🏪 Shop & Ngân hàng</button>
     <button class="tab" onclick="showTab('security')">🔔 Telegram & Gmail</button>
     <button class="tab" onclick="showTab('orders')">📦 Quản lý Đơn hàng</button>
     <button class="tab tab-guide" onclick="showTab('guide')">📖 Hướng dẫn sử dụng</button>
   </nav>
 
   <form id="configForm">
-    <!-- TAB 1: VIỆT NAM -->
-    <section id="productVN" class="panel active card">
-      <h2>🇻🇳 Bảng giá & Tồn kho Việt Nam (VNĐ)</h2>
-      <p class="small">Dành riêng cho thị trường Việt Nam (Lưu trực tiếp tại Sheet <b>BangGia_VN</b>).</p><br>
+    <!-- TAB 1: BẢNG GIÁ ĐÀI LOAN -->
+    <section id="productTW" class="panel active card">
+      <h2>💎 Bảng giá & Tồn kho Sản phẩm (NT$)</h2>
+      <p class="small">Quản lý giá bán, giá gốc và tồn kho từng size bông tai tại thị trường Đài Loan.</p><br>
       <div class="grid">
-        <div><label>Tên sản phẩm (VN)</label><input name="productNameVN" value="Bông nụ bạc S925 kim cương Moissanite cao cấp full kiểm định GRA"></div>
-        <div><label>Tên shop</label><input name="shopName" value="Phú Gia Diamond"></div>
-        <div><label>Giá bán mặc định (VNĐ)</label><input name="salePriceVN" value="459999"></div>
-        <div><label>Giá gốc mặc định (VNĐ)</label><input name="oldPriceVN" value="647895"></div>
-        <div><label>Text giảm giá (VN)</label><input name="discountTextVN" value="Flash Sale"></div>
-        <div><label>Flash sale (phút)</label><input name="flashMinutes" value="14"></div>
-        <div><label>Đã bán (VN)</label><input name="soldCountVN" value="1238"></div>
-        <div><label>Còn hàng tổng (VN)</label><input name="stockLeftVN" value="17"></div>
-      </div>
-      <br>
-      <label>Mô tả ngắn (VN)</label>
-      <textarea name="shortDescriptionVN">Bạc thật S925, Moissanite sáng đẹp, full kiểm định GRA, tặng hộp cao cấp.</textarea>
-      <br><br>
-
-      <!-- BẢNG NHẬP LIỆU GIÁ TRỰC QUAN VIỆT NAM -->
-      <label style="font-size:15px; color:var(--gold-light); margin-bottom:4px;">📊 Bảng quản lý Từng Size & Tồn kho Việt Nam (VNĐ)</label>
-      <p class="small" style="margin-bottom:8px;">Nhập giá và tồn kho trực tiếp vào từng dòng (hoặc sửa trực tiếp trên Google Sheet <b>BangGia_VN</b>):</p>
-      
-      <div class="price-editor-box">
-        <table class="price-editor-table" id="tableVN">
-          <thead>
-            <tr>
-              <th style="width:130px;">Phân loại</th>
-              <th style="width:110px;">Size đá</th>
-              <th style="width:110px;">Mã SKU</th>
-              <th style="width:110px;">Tồn kho</th>
-              <th>Giá gốc (VNĐ)</th>
-              <th>Giá bán ưu đãi (VNĐ)</th>
-              <th style="width:60px; text-align:center;">Xóa</th>
-            </tr>
-          </thead>
-          <tbody id="tbodyVN"></tbody>
-        </table>
-
-        <div class="table-toolbar">
-          <button type="button" class="btn2" onclick="addPriceRow('tbodyVN', {type:'1 Đôi', size:'5mm', code:'MS05*2', stock:'50', oldPrice:'647895', salePrice:'459999'}, false)">➕ Thêm dòng Size mới</button>
-          <button type="button" class="btn2" onclick="resetDefaultPrices('tbodyVN', false)">🔄 Nạp bảng giá mặc định VN</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- TAB 2: ĐÀI LOAN -->
-    <section id="productTW" class="panel card">
-      <h2>🇹🇼 Bảng giá & Tồn kho Đài Loan (NT$)</h2>
-      <p class="small">Dành riêng cho thị trường Đài Loan (Lưu trực tiếp tại Sheet <b>BangGia_TW</b>).</p><br>
-      <div class="grid">
-        <div><label>Tên sản phẩm (Đài Loan)</label><input name="productNameTW" value="Bông nụ bạc S925 Moissanite cao cấp - giao tại Đài Loan"></div>
+        <div><label>Tên sản phẩm</label><input name="productName" value="Bông nụ bạc S925 Moissanite cao cấp (4 Chấu) - giao tại Đài Loan"></div>
+        <div><label>Tên shop</label><input name="shopName" value="Phú Gia Diamond (Đài Loan)"></div>
         <div><label>Đơn vị tiền tệ</label><input value="NT$ (Tân Đài Tệ)" readonly style="color:#aaa"></div>
-        <div><label>Giá bán mặc định (NT$)</label><input name="salePriceTW" value="599"></div>
-        <div><label>Giá gốc mặc định (NT$)</label><input name="oldPriceTW" value="899"></div>
-        <div><label>Text giảm giá (Đài Loan)</label><input name="discountTextTW" value="Flash Sale"></div>
-        <div><label>Đã bán (Đài Loan)</label><input name="soldCountTW" value="865"></div>
-        <div><label>Còn hàng tổng tại Đài Loan</label><input name="stockLeftTW" value="23"></div>
+        <div><label>Giá bán mặc định (NT$)</label><input name="salePrice" value="1114"></div>
+        <div><label>Giá gốc mặc định (NT$)</label><input name="oldPrice" value="1590"></div>
+        <div><label>Text giảm giá</label><input name="discountText" value="Flash Sale"></div>
+        <div><label>Flash sale (phút)</label><input name="flashMinutes" value="14"></div>
+        <div><label>Đã bán</label><input name="soldCount" value="865"></div>
+        <div><label>Còn hàng tổng</label><input name="stockLeft" value="23"></div>
       </div>
       <br>
-      <label>Mô tả ngắn (Đài Loan)</label>
-      <textarea name="shortDescriptionTW">Bạc thật S925, Moissanite sáng đẹp, full kiểm định GRA quốc tế, hỗ trợ giao tận tay tại Đài Loan.</textarea>
+      <label>Mô tả ngắn sản phẩm</label>
+      <textarea name="shortDescription">Bạc thật S925, Moissanite sáng đẹp, full kiểm định GRA quốc tế, hỗ trợ giao tận tay tại Đài Loan.</textarea>
       <br><br>
 
       <!-- BẢNG NHẬP LIỆU GIÁ TRỰC QUAN ĐÀI LOAN -->
-      <label style="font-size:15px; color:var(--gold-light); margin-bottom:4px;">📊 Bảng quản lý Từng Size & Tồn kho Đài Loan (NT$)</label>
-      <p class="small" style="margin-bottom:8px;">Nhập giá và tồn kho trực tiếp vào từng dòng (hoặc sửa trực tiếp trên Google Sheet <b>BangGia_TW</b>):</p>
+      <label style="font-size:15px; color:var(--gold-light); margin-bottom:4px;">📊 Bảng quản lý Từng Size & Tồn kho (NT$ - 4 Chấu)</label>
+      <p class="small" style="margin-bottom:8px;">Nhập giá và tồn kho trực tiếp vào từng dòng:</p>
       
       <div class="price-editor-box">
         <table class="price-editor-table" id="tableTW">
@@ -771,15 +725,15 @@ tr:hover td { background: rgba(255, 255, 255, 0.02); }
         </table>
 
         <div class="table-toolbar">
-          <button type="button" class="btn2" onclick="addPriceRow('tbodyTW', {type:'1 Đôi', size:'5mm', code:'MS05*2', stock:'50', oldPrice:'899', salePrice:'599'}, true)">➕ Thêm dòng Size mới (TW)</button>
-          <button type="button" class="btn2" onclick="resetDefaultPrices('tbodyTW', true)">🔄 Nạp bảng giá mặc định TW</button>
+          <button type="button" class="btn2" onclick="addPriceRow('tbodyTW', {type:'1 Đôi', size:'5mm', code:'MS05*2', stock:'50', oldPrice:'1990', salePrice:'1406'}, true)">➕ Thêm dòng Size mới</button>
+          <button type="button" class="btn2" onclick="resetDefaultPrices('tbodyTW', true)">🔄 Nạp bảng giá mặc định (4 Chấu)</button>
         </div>
       </div>
     </section>
 
-    <!-- TAB 3: SHOP & CHUYỂN KHOẢN -->
+    <!-- TAB 2: SHOP & NGÂN HÀNG -->
     <section id="shop" class="panel card">
-      <h2>🏪 Thông tin Shop & Chuyển khoản</h2><br>
+      <h2>🏪 Thông tin Shop & Ngân hàng</h2><br>
       <div class="grid">
         <div><label>Ngân hàng</label><input name="bankName" placeholder="VD: MB Bank"></div>
         <div><label>Số tài khoản</label><input name="bankAccount" placeholder="VD: 0398138678"></div>
@@ -788,10 +742,10 @@ tr:hover td { background: rgba(255, 255, 255, 0.02); }
       </div>
       <br>
       <div class="grid">
-        <div><label>Địa chỉ shop</label><input name="shopAddress" placeholder="Hưng Yên, Việt Nam"></div>
-        <div><label>Hotline</label><input name="hotline" placeholder="0398138678"></div>
-        <div><label>Zalo</label><input name="zalo" placeholder="0398138678"></div>
-        <div><label>Google Maps shop link</label><input name="shopMap" placeholder="https://maps.google.com/..."></div>
+        <div><label>Địa chỉ shop</label><input name="shopAddress" value="Đài Loan & Việt Nam"></div>
+        <div><label>Hotline</label><input name="hotline" value="09xxxxxxxx"></div>
+        <div><label>Zalo</label><input name="zalo" value="0398138678"></div>
+        <div><label>Google Maps link</label><input name="shopMap" placeholder="https://maps.google.com/..."></div>
       </div>
       <br>
       <div>
@@ -800,7 +754,7 @@ tr:hover td { background: rgba(255, 255, 255, 0.02); }
       </div>
     </section>
 
-    <!-- TAB 4: TELEGRAM & GMAIL -->
+    <!-- TAB 3: TELEGRAM & GMAIL -->
     <section id="security" class="panel card">
       <h2>🔔 Thông báo Telegram & Gmail</h2>
       <p class="small">Thông tin được bảo mật và lưu an toàn trong Script Properties.</p><br>
@@ -817,12 +771,12 @@ tr:hover td { background: rgba(255, 255, 255, 0.02); }
     </div>
   </form>
 
-  <!-- TAB 5: ĐƠN HÀNG -->
+  <!-- TAB 4: ĐƠN HÀNG -->
   <section id="orders" class="panel card">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px;">
       <div>
-        <h2>📦 Danh sách Đơn hàng Mới</h2>
-        <p class="small">Dữ liệu đơn hàng đồng bộ trực tiếp từ Google Sheets (Việt Nam & Đài Loan).</p>
+        <h2>📦 Danh sách Đơn hàng Đài Loan</h2>
+        <p class="small">Dữ liệu đơn hàng đồng bộ trực tiếp từ Google Sheets.</p>
       </div>
       <button class="btn2" onclick="loadOrders()">🔄 Làm mới danh sách</button>
     </div>
@@ -832,61 +786,50 @@ tr:hover td { background: rgba(255, 255, 255, 0.02); }
           <tr>
             <th>Thời gian</th>
             <th>Mã đơn</th>
-            <th>Thị trường</th>
-            <th>Khách</th>
+            <th>Khách hàng</th>
             <th>SĐT</th>
-            <th>Địa chỉ</th>
-            <th>Phân loại</th>
-            <th>Size</th>
+            <th>Địa chỉ giao</th>
+            <th>Quy cách & Size</th>
             <th>SL</th>
-            <th>Tổng tiền</th>
+            <th>Tổng tiền NT$</th>
+            <th>Ảnh Thẻ Cư Trú (ARC)</th>
             <th>Trạng thái</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td colspan="11" style="text-align:center; padding:24px; color:#888;">Chưa tải danh sách đơn hàng. Nhấn "Làm mới danh sách" để xem.</td></tr>
+          <tr><td colspan="10" style="text-align:center; padding:24px; color:#888;">Chưa tải danh sách đơn hàng. Nhấn "Làm mới danh sách" để xem.</td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
-  <!-- TAB 6: HƯỚNG DẪN CHI TIẾT (USER GUIDE) -->
+  <!-- TAB 5: HƯỚNG DẪN CHI TIẾT (USER GUIDE) -->
   <section id="guide" class="panel card">
-    <h2>📖 Hướng Dẫn Sử Dụng & Quản Lý Kho Dễ Dàng</h2>
-    <p class="small">Tài liệu hướng dẫn vận hành hệ thống Phú Gia Diamond COD V7.</p><br>
+    <h2>📖 Hướng Dẫn Sử Dụng & Vận Hành Đơn Hàng Đài Loan</h2>
+    <p class="small">Tài liệu hướng dẫn quản lý kho & xử lý đơn hàng COD Đài Loan.</p><br>
 
     <div class="guide-box">
       <div class="guide-step">
         <div class="step-num">1</div>
         <div class="step-content">
-          <h3>Cách quản lý Bảng giá & Tồn kho trực quan (Không cần đụng JSON)</h3>
-          <p>
-            - <b>Cách 1 (Ngay trên Admin):</b> Bạn chỉ cần vào tab <b>🇻🇳 Bảng giá Việt Nam</b> hoặc <b>🇹🇼 Bảng giá Đài Loan</b> &rarr; Sửa trực tiếp số tiền hoặc số lượng tồn kho trong các ô của bảng &rarr; Bấm <b>LƯU TOÀN BỘ CẤU HÌNH</b>.<br>
-            - <b>Cách 2 (Trực tiếp trên Google Sheet):</b> Mở file Google Sheet của bạn &rarr; Mở trang tính <b>BangGia_VN</b> hoặc <b>BangGia_TW</b> &rarr; Gõ số sửa như Excel bình thường. Hệ thống tự động đọc và đồng bộ ngay lập tức!
-          </p>
+          <h4>💎 Quản lý Bảng giá & Tồn kho</h4>
+          <p>Chỉnh sửa trực tiếp giá bán, giá gốc và tồn kho của từng size đá (4mm – 7.5mm) trong Tab <b>Bảng giá Sản phẩm</b> rồi bấm <b>Lưu vào Google Sheets</b>.</p>
         </div>
       </div>
 
       <div class="guide-step">
         <div class="step-num">2</div>
         <div class="step-content">
-          <h3>Cơ chế Trừ tồn kho tự động</h3>
-          <p>
-            - Mỗi khi khách đặt hàng thành công tại web Việt Nam hoặc Đài Loan, hệ thống sẽ tự động tìm đúng dòng Size và Phân loại khách mua trong Sheet <b>BangGia_VN</b> hoặc <b>BangGia_TW</b> và <b>trừ đi số lượng khách mua</b>.<br>
-            - Số lượng tồn kho còn lại sẽ được hiển thị ngay trong tin nhắn báo đơn Telegram.
-          </p>
+          <h4>📸 Kiểm tra Ảnh Thẻ Cư Trú (ARC) / Địa chỉ xưởng</h4>
+          <p>Khi khách hàng gửi ảnh chụp Thẻ Cư Trú hoặc Card xưởng, ảnh sẽ tự động được lưu vào thư mục <b>PhuGia_TheCuTru_TW</b> trên Google Drive. Bạn chỉ cần nhấn vào link ảnh trong bảng đơn hàng để đối chiếu in vận đơn 7-Eleven / FamilyMart.</p>
         </div>
       </div>
 
       <div class="guide-step">
         <div class="step-num">3</div>
         <div class="step-content">
-          <h3>Cài đặt thông báo Đơn hàng về Telegram</h3>
-          <p>
-            1. Mở Telegram, tìm bot <code class="code-inline">@BotFather</code> &rarr; Gửi lệnh <code class="code-inline">/newbot</code> để lấy <b>Bot Token</b>.<br>
-            2. Tìm bot <code class="code-inline">@userinfobot</code> để lấy <b>Chat ID</b> của bạn.<br>
-            3. Dán Token và Chat ID vào Tab <b>🔔 Telegram & Gmail</b> rồi Lưu. Khi có đơn mới từ VN hoặc TW, Telegram sẽ báo chuông ngay lập tức.
-          </p>
+          <h4>🔔 Thông báo Telegram tự động</h4>
+          <p>Mỗi khi có khách đặt hàng mới tại Đài Loan, bot Telegram sẽ tự động gửi tin nhắn báo tên, SĐT, địa chỉ, tổng tiền NT$ và link xem ảnh thẻ cư trú theo thời gian thực.</p>
         </div>
       </div>
     </div>
@@ -1222,23 +1165,12 @@ function authPayload(extra = {}) {
 
 function formToObject() {
   const data = Object.fromEntries(new FormData($("#configForm")).entries());
-  // Đóng gói dữ liệu từ 2 bảng trực quan thành JSON
-  data.priceTableVN = JSON.stringify(getPriceTableData("tbodyVN"));
-  data.priceTableTW = JSON.stringify(getPriceTableData("tbodyTW"));
+  data.priceTable = JSON.stringify(getPriceTableData("tbodyTW"));
   return data;
 }
 
 function fillForm(config) {
   if (!config) return;
-
-  // Tự động ánh xạ fallback nếu Sheet cũ chứa các key đơn lẻ
-  if (!config.productNameVN && config.productName) config.productNameVN = config.productName;
-  if (!config.salePriceVN && config.salePrice) config.salePriceVN = config.salePrice;
-  if (!config.oldPriceVN && config.oldPrice) config.oldPriceVN = config.oldPrice;
-  if (!config.discountTextVN && config.discountText) config.discountTextVN = config.discountText;
-  if (!config.soldCountVN && config.soldCount) config.soldCountVN = config.soldCount;
-  if (!config.stockLeftVN && config.stockLeft) config.stockLeftVN = config.stockLeft;
-  if (!config.shortDescriptionVN && config.shortDescription) config.shortDescriptionVN = config.shortDescription;
 
   Object.entries(config).forEach(([k, v]) => {
     const el = document.querySelector(`[name="${k}"]`);
@@ -1247,20 +1179,18 @@ function fillForm(config) {
     }
   });
 
-  // Render 2 bảng trực quan
-  const parseTable = (raw, isTW) => {
-    if (!raw) return isTW ? DEFAULT_PRICES_TW : DEFAULT_PRICES_VN;
+  const parseTable = (raw) => {
+    if (!raw) return DEFAULT_PRICES_TW;
     if (Array.isArray(raw)) return raw;
     try {
       const p = JSON.parse(raw);
-      return Array.isArray(p) ? p : (isTW ? DEFAULT_PRICES_TW : DEFAULT_PRICES_VN);
+      return Array.isArray(p) ? p : DEFAULT_PRICES_TW;
     } catch(e) {
-      return isTW ? DEFAULT_PRICES_TW : DEFAULT_PRICES_VN;
+      return DEFAULT_PRICES_TW;
     }
   };
 
-  renderPriceEditorTable("tbodyVN", parseTable(config.priceTableVN || config.priceTable, false), false);
-  renderPriceEditorTable("tbodyTW", parseTable(config.priceTableTW, true), true);
+  renderPriceEditorTable("tbodyTW", parseTable(config.priceTable || config.priceTableTW), true);
 
   if (config.currentAdminUsername) {
     $("#currentUserBadge").textContent = "🟢 " + config.currentAdminUsername;
@@ -1279,7 +1209,7 @@ async function loadConfig() {
     const data = await res.json();
     if (!data.ok) throw new Error(data.error || "Không tải được cấu hình");
     fillForm(data.config);
-    showStatus("Đã tải cấu hình và bảng giá 2 quốc gia thành công từ Google Sheets.");
+    showStatus("Đã tải cấu hình và bảng giá Đài Loan thành công từ Google Sheets.");
   } catch (e) {
     showStatus(e.message, false);
   }
@@ -1327,27 +1257,27 @@ async function loadOrders() {
     tbody.innerHTML = "";
     
     if (!data.orders || data.orders.length === 0) {
-      tbody.innerHTML = "<tr><td colspan='11' style='text-align:center; padding:24px; color:#888;'>Chưa có đơn hàng nào.</td></tr>";
+      tbody.innerHTML = "<tr><td colspan='10' style='text-align:center; padding:24px; color:#888;'>Chưa có đơn hàng nào.</td></tr>";
     } else {
       data.orders.forEach(o => {
         const tr = document.createElement("tr");
-        const isTW = (o.market && o.market.includes("Đài Loan")) || String(o.price || "").includes("NT$");
-        const badgeHtml = isTW ? "<span class='badge-tw'>🇹🇼 Đài Loan</span>" : "<span class='badge-vn'>🇻🇳 Việt Nam</span>";
-        
         const phoneHtml = o.phone ? `<a href="tel:${o.phone}" style="color:var(--gold-light); font-weight:600; text-decoration:underline;">${o.phone}</a>` : "";
-        const priceHtml = `<strong style="color:#f87171;">${o.price || "Chưa có"}</strong>`;
+        const cleanPrice = String(o.price || "").replace(/[^0-9]/g, "");
+        const priceHtml = `<strong style="color:#f87171;">NT$ ${Number(cleanPrice || 0).toLocaleString("zh-TW")}</strong>`;
+        const arcHtml = (o.arcImage && String(o.arcImage).startsWith("http"))
+          ? `<a href="${o.arcImage}" target="_blank" style="background:rgba(16,185,129,0.2); color:#34d399; padding:4px 10px; border-radius:6px; font-weight:700; text-decoration:underline; font-size:12px;">🖼️ Xem ảnh ARC</a>`
+          : `<span style="color:#666; font-size:12px;">Không có</span>`;
 
         const cols = [
           o.createdAt,
           `<span style="font-family:'JetBrains Mono',monospace; font-size:12px;">${o.orderId}</span>`,
-          badgeHtml,
           `<strong style="color:#fff;">${o.name || "Khách ẩn danh"}</strong>`,
           phoneHtml,
           o.address || "Chưa nhập",
-          o.variant || "1 Đôi",
-          o.size || "5mm",
+          `${o.variant || "1 Đôi"} (Size ${o.size || "5mm"})`,
           o.quantity || "1",
           priceHtml,
+          arcHtml,
           `<span style="background:rgba(16,185,129,0.15); color:#6ee7b7; padding:2px 8px; border-radius:6px; font-weight:700; font-size:11px;">${o.status || "Mới"}</span>`
         ];
         cols.forEach(val => {
@@ -1372,8 +1302,6 @@ function openLanding(page = "index.html") {
 
 // Khởi chạy khi load trang
 window.addEventListener("DOMContentLoaded", () => {
-  // Render bảng mặc định sẵn
-  renderPriceEditorTable("tbodyVN", DEFAULT_PRICES_VN, false);
   renderPriceEditorTable("tbodyTW", DEFAULT_PRICES_TW, true);
 
   const savedUser = sessionStorage.getItem("PGD_AUTH_USER");
