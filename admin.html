@@ -1099,7 +1099,11 @@ async function handleLogin(event) {
     showStatus("Đăng nhập thành công! Đã đồng bộ dữ liệu hệ thống.", true);
 
   } catch (err) {
-    showStatus(err.message || "Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin.", false, "#loginStatus");
+    let errorMsg = err.message || "Đăng nhập thất bại. Vui lòng kiểm tra lại.";
+    if (errorMsg.includes("Failed to fetch")) {
+      errorMsg = "Không thể kết nối đến Apps Script (Lỗi 403 Forbidden hoặc chưa cấp quyền). Hãy chắc chắn khi Deploy đã chọn 'Người có quyền truy cập: Bất kỳ ai (Anyone)'!";
+    }
+    showStatus(errorMsg, false, "#loginStatus");
   } finally {
     btn.disabled = false;
     btn.innerHTML = "<span>🔐 ĐĂNG NHẬP QUẢN TRỊ</span>";
