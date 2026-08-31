@@ -1081,7 +1081,7 @@ async function handleLogin(event) {
     const res = await fetch(APP_ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify({ action: "adminConfig", username: username, password: password })
+      body: JSON.stringify({ action: "adminConfig", username: username, password: password, key: password })
     });
 
     const data = await res.json();
@@ -1142,10 +1142,11 @@ async function handleChangePassword(event) {
       method: "POST",
       headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify({
-        action: "changePassword",
+        action: "saveConfig",
         username: username,
-        currentPassword: oldPass,
-        newPassword: newPass
+        password: oldPass,
+        key: oldPass,
+        config: { newAdminKey: newPass }
       })
     });
 
@@ -1214,6 +1215,7 @@ function authPayload(extra = {}) {
   return {
     username: currentAuthUsername,
     password: currentAuthPassword,
+    key: currentAuthPassword,
     ...extra
   };
 }
