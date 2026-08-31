@@ -44,22 +44,23 @@ function doGet(e) {
 function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents || "{}");
+    const authKey = data.key || data.password;
 
     // 1. Admin lấy cấu hình
     if (data.action === "adminConfig") {
-      checkAdminWithBruteForceGuard_(data.key);
+      checkAdminWithBruteForceGuard_(authKey);
       return json_({ ok: true, config: getConfig_() });
     }
 
     // 2. Admin xem đơn hàng
     if (data.action === "orders") {
-      checkAdminWithBruteForceGuard_(data.key);
+      checkAdminWithBruteForceGuard_(authKey);
       return json_({ ok: true, orders: getOrders_() });
     }
 
     // 3. Admin lưu cấu hình
     if (data.action === "saveConfig") {
-      checkAdminWithBruteForceGuard_(data.key);
+      checkAdminWithBruteForceGuard_(authKey);
       saveConfig_(data.config || {});
       savePrivateProps_(data.config || {});
       return json_({ ok: true });
